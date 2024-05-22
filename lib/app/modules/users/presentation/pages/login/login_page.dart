@@ -1,7 +1,8 @@
 // import 'dart:nativewrappers/_internal/vm/lib/ffi_allocation_patch.dart';
 
 import 'package:flutter/material.dart';
-import 'login_controller.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:imperio/app/modules/users/presentation/pages/login/login_controller.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -11,8 +12,16 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final _controller = LoginController();
+  // final _controller = LoginController();
   final TextEditingController _textController = TextEditingController();
+  final controler = Modular.get<LoginController>();
+
+  @override
+  void initState() {
+    super.initState();
+    controler.postData();
+    setState(() {});
+  }
 
   @override
   void dispose() {
@@ -31,10 +40,10 @@ class _LoginPageState extends State<LoginPage> {
           children: [
             const Spacer(flex: 1),
             const Text(
-              'Qual seu e-mail?',
+              'Qual o seu e-mail?',
               style: TextStyle(
                   fontSize: 24,
-                  fontWeight: FontWeight.bold,
+                  fontWeight: FontWeight.w500,
                   fontFamily: 'Montserrat',
                   color: Color(0xFF000000)),
               textAlign: TextAlign.left,
@@ -44,12 +53,13 @@ class _LoginPageState extends State<LoginPage> {
                 height: 57,
                 child: TextField(
                   controller: _textController,
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Insira sua senha',
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12)),
+                    labelText: 'Insira seu email',
                   ),
-                  style: const TextStyle(fontSize: 24),
-                  textAlign: TextAlign.center,
+                  style: const TextStyle(fontSize: 14),
+                  textAlign: TextAlign.left,
                 )),
             const SizedBox(height: 15),
             FractionallySizedBox(
@@ -61,10 +71,21 @@ class _LoginPageState extends State<LoginPage> {
                   style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xFFF5D70A)),
                   onPressed: () {
+                    controler.postData();
                     String username = _textController.text;
-                    print('username: $username');
+                    print('email: $username');
+                    print('AuthToken: ${controler.token.authToken}');
+                    print('RefreshToken: ${controler.token.refreshToken}');
                   },
-                  child: const Text('Login'),
+                  child: const Text(
+                    'Continuar',
+                    style: TextStyle(
+                      fontSize: 12,
+                      fontFamily: 'Montserrat',
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                    ),
+                  ),
                 ),
               ),
             ),

@@ -4,6 +4,7 @@ import 'package:imperio/app/modules/users/data/repositories/login_repository_imp
 import 'package:imperio/app/modules/users/domain/repositories/login_repository.dart';
 import 'package:imperio/app/modules/users/domain/usecases/login_usecase_impl.dart';
 import 'package:imperio/app/modules/users/external/datasources/login_datasource_impl.dart';
+import 'package:imperio/app/modules/users/presentation/pages/login/login_controller.dart';
 import 'package:imperio/app/modules/users/presentation/pages/login/login_page.dart';
 
 class LoginModule extends Module {
@@ -15,6 +16,9 @@ class LoginModule extends Module {
     );
     i.addSingleton<LoginUseCaseImpl>(
       () => LoginUseCaseImpl(Modular.get<LoginRepository>()),
+    );
+    i.addSingleton<LoginController>(
+      () => LoginController(Modular.get<LoginUseCaseImpl>()),
     );
   }
 

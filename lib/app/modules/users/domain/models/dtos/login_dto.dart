@@ -7,9 +7,9 @@ class LoginDto {
   final String authToken;
   final String refreshToken;
 
-  factory LoginDto.fromMap(Map map) => LoginDto(
-        authToken: map['authToken'],
-        refreshToken: map['refreshToken'],
+  factory LoginDto.fromMap(Map<String, dynamic> map) => LoginDto(
+        authToken: map['auth_token'],
+        refreshToken: map['refresh_token'],
       );
 
   Map<String, dynamic> toMap() => {
