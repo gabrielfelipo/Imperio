@@ -7,9 +7,9 @@ import 'package:imperio/app/modules/users/presentation/pages/login/login_page.da
 class LoginModule extends Module {
   @override
   void binds(i) {
-    i.addSingleton(LoginDataSourceImpl.new);
-    i.addSingleton(LoginRepositoryImpl.new);
-    i.addSingleton(LoginUseCaseImpl.new);
+    // i.addSingleton(LoginDataSourceImpl.new);
+    // i.addSingleton(LoginRepositoryImpl.new);
+    // i.addSingleton(LoginUseCaseImpl.new);
   }
 
   @override

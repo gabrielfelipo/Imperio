@@ -1,4 +1,4 @@
-import 'dart:nativewrappers/_internal/vm/lib/ffi_allocation_patch.dart';
+// import 'dart:nativewrappers/_internal/vm/lib/ffi_allocation_patch.dart';
 
 import 'package:flutter/material.dart';
 import 'login_controller.dart';
@@ -46,7 +46,7 @@ class _LoginPageState extends State<LoginPage> {
                   controller: _textController,
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
-                    labelText: 'Dale tua senha',
+                    labelText: 'Insira sua senha',
                   ),
                   style: const TextStyle(fontSize: 24),
                   textAlign: TextAlign.center,
@@ -62,7 +62,7 @@ class _LoginPageState extends State<LoginPage> {
                       backgroundColor: const Color(0xFFF5D70A)),
                   onPressed: () {
                     String username = _textController.text;
-                    print('rola rola rola rola: $username');
+                    print('username: $username');
                   },
                   child: const Text('Login'),
                 ),
