@@ -24,7 +24,7 @@ class _LandingPageState extends State<LandingPage> {
             child: Stack(
               children: [
                 ClipRRect(
-                  borderRadius: BorderRadius.circular(16.0),
+                  borderRadius: BorderRadius.circular(20.0),
                   child: Container(
                     width: double.infinity,
                     height: screenHeight / 2,
@@ -68,8 +68,6 @@ class _LandingPageState extends State<LandingPage> {
           const SizedBox(
             height: 62,
           ),
-
-          // Outros elementos abaixo da imagem
           Expanded(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -105,9 +103,6 @@ class _LandingPageState extends State<LandingPage> {
                     ),
                   ],
                 ),
-                // const SizedBox(
-                //   height: 41,
-                // ),
                 const Center(
                   child: const Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -176,60 +171,9 @@ class _LandingPageState extends State<LandingPage> {
                     ),
                   ),
                 ),
-
-                // const SizedBox(
-                //   height: 54,
-                // ),
               ],
             ),
           ),
-
-          //Insira a Row aqui
-          // Container(
-          //   constraints: BoxConstraints(maxWidth: screenWidth),
-          //   child: Row(
-          //     mainAxisAlignment: MainAxisAlignment.center,
-          //     mainAxisSize: MainAxisSize.max,
-          //     children: [
-          //       const SizedBox(
-          //         width: 43,
-          //       ),
-          //       Container(
-          //         constraints: BoxConstraints(maxWidth: screenWidth / 3),
-          //         // width: 100,
-          //         height: 56,
-          //         // color: Colors.red,
-          //         child: ImperioButton(
-          //           text: 'Email',
-          //           height: 56,
-          //           model: ImperioButtonViewModel.secondary,
-          //           onPressed: () {},
-          //           backgroundColor: Colors.transparent,
-          //         ),
-          //       ),
-          //       const SizedBox(
-          //         width: 11,
-          //       ),
-          //       Container(
-          //         constraints: BoxConstraints(maxWidth: screenWidth / 3),
-          //         // width: 100,
-          //         height: 56,
-          //         // color: Colors.red,
-          //         child: ImperioButton(
-          //           text: 'Email',
-          //           height: 56,
-          //           model: ImperioButtonViewModel.secondary,
-          //           onPressed: () {},
-          //           backgroundColor: Colors.transparent,
-          //         ),
-          //       ),
-          //       const SizedBox(
-          //         width: 43,
-          //       ),
-          //     ],
-          //   ),
-          // ),
-
           const SizedBox(
             height: 54,
           ),
