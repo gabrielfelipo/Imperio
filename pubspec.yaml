@@ -32,6 +32,9 @@ flutter:
     - assets/images/appleIcon.png
     - assets/images/googleIcon.png
     - assets/images/landingPageBanner.png
+    - assets/images/nbaCardPlayer.png
+    - assets/images/leagueCard.png
+    - assets/images/championsLeagueIcon.png
 
   #   - images/a_dot_ham.jpeg
 
