@@ -8,7 +8,7 @@ void main() {
   return runApp(
     ModularApp(
       module: AppModule(),
-      child: AppWidget(),
+      child: const AppWidget(),
     ),
   );
 }
