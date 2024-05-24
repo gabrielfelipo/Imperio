@@ -67,43 +67,12 @@ class _LoginPageState extends State<LoginPage> {
               text: 'Continuar',
               model: ImperioButtonViewModel.primary,
               height: 55,
-              icon: Image.asset(
-                'assets/images/googleIcon.png',
-                fit: BoxFit.fill,
-              ),
-              widthToIcon: 30,
+              width: double.infinity,
               onPressed: () {
                 controler.next(widget.state);
               },
               backgroundColor: Color(0xFFF5D70A),
             ),
-            // FractionallySizedBox(
-            //   widthFactor: 0.8,
-            //   child: SizedBox(
-            //     height: 55,
-            //     width: 296,
-            //     child: ElevatedButton(
-            //       style: ElevatedButton.styleFrom(
-            //           backgroundColor: const Color(0xFFF5D70A)),
-            //       onPressed: () {
-            //         controler.next(widget.state);
-            //         String username = _textController.text;
-            //         print('email: $username');
-            //         print('AuthToken: ${controler.token.authToken}');
-            //         print('RefreshToken: ${controler.token.refreshToken}');
-            //       },
-            //       child: const Text(
-            //         'Continuar',
-            //         style: TextStyle(
-            //           fontSize: 12,
-            //           fontFamily: 'Montserrat',
-            //           fontWeight: FontWeight.bold,
-            //           color: Colors.black,
-            //         ),
-            //       ),
-            //     ),
-            //   ),
-            // ),
             const Spacer(flex: 5)
           ],
         ),
