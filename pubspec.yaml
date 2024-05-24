@@ -41,6 +41,18 @@ flutter:
     - assets/images/liveIcon.png
     - assets/images/saoPauloIcon.png
     - assets/images/palmeirasIcon.png
+    - assets/images/yellowCard.png
+    - assets/images/redCard.png
+    - assets/images/soccerBallIcon.png
+    - assets/images/1xbetIcon.png
+    - assets/images/betssonIcon.png
+    - assets/images/betsafeIcon.png
+    - assets/images/tipsBanner1.png
+    - assets/images/basketBallIcon.png
+    - assets/images/bet365Icon.png
+    - assets/images/fireIcon.png
+    - assets/images/mockupUserAvatar.png
+    - assets/images/imperioLogo.png
 
   #   - images/a_dot_ham.jpeg
 

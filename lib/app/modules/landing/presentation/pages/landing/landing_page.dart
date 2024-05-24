@@ -116,7 +116,7 @@ class _LandingPageState extends State<LandingPage> {
                   ],
                 ),
                 const Center(
-                  child: const Row(
+                  child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       Expanded(
@@ -178,7 +178,7 @@ class _LandingPageState extends State<LandingPage> {
                             width: double.infinity,
                             model: ImperioButtonViewModel.primary,
                             onPressed: () {},
-                            backgroundColor: Color(0xFFF5D70A),
+                            backgroundColor: const Color(0xFFF5D70A),
                           ),
                         )),
                       ],

@@ -71,7 +71,7 @@ class _LoginPageState extends State<LoginPage> {
               onPressed: () {
                 controler.next(widget.state);
               },
-              backgroundColor: Color(0xFFF5D70A),
+              backgroundColor: const Color(0xFFF5D70A),
             ),
             const Spacer(flex: 5)
           ],
