@@ -79,11 +79,17 @@ class _LandingPageState extends State<LandingPage> {
                       child: ImperioButton(
                         text: "Entrar com o google",
                         height: 56,
+                        width: double.infinity,
+                        distanceToBorder: 32,
                         onPressed: () {
                           print("Google Acces");
                         },
                         backgroundColor: const Color(0xFFE6E6E6),
-                        icon: Image.asset("assets/images/googleIcon.png"),
+                        icon: Image.asset(
+                          "assets/images/googleIcon.png",
+                          height: 24,
+                          width: 24,
+                        ),
                       ),
                     ),
                     const SizedBox(
@@ -94,11 +100,17 @@ class _LandingPageState extends State<LandingPage> {
                       child: ImperioButton(
                           text: "Entrar com Apple",
                           height: 56,
+                          width: double.infinity,
+                          distanceToBorder: 32,
                           onPressed: () {
                             print("Apple Access");
                           },
                           textColor: Colors.white,
-                          icon: Image.asset("assets/images/appleIcon.png"),
+                          icon: Image.asset(
+                            "assets/images/appleIcon.png",
+                            height: 24,
+                            width: 24,
+                          ),
                           backgroundColor: const Color(0xFF070101)),
                     ),
                   ],
@@ -150,6 +162,7 @@ class _LandingPageState extends State<LandingPage> {
                             child: ImperioButton(
                               text: 'Email',
                               height: 56,
+                              width: double.infinity,
                               model: ImperioButtonViewModel.secondary,
                               onPressed: () {},
                               backgroundColor: Colors.transparent,
@@ -162,6 +175,7 @@ class _LandingPageState extends State<LandingPage> {
                           child: ImperioButton(
                             text: 'Telefone',
                             height: 56,
+                            width: double.infinity,
                             model: ImperioButtonViewModel.primary,
                             onPressed: () {},
                             backgroundColor: Color(0xFFF5D70A),

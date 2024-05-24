@@ -35,6 +35,12 @@ flutter:
     - assets/images/nbaCardPlayer.png
     - assets/images/leagueCard.png
     - assets/images/championsLeagueIcon.png
+    - assets/images/laLigaIcon.png
+    - assets/images/serieAIcon.png
+    - assets/images/uefaIcon.png
+    - assets/images/liveIcon.png
+    - assets/images/saoPauloIcon.png
+    - assets/images/palmeirasIcon.png
 
   #   - images/a_dot_ham.jpeg
 

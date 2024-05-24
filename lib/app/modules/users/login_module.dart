@@ -27,10 +27,7 @@ class LoginModule extends Module {
 
   @override
   void routes(r) {
-    r.child('/',
-        child: (context) => const HomePage(
-            // state: LoginStateView.email,
-            ));
+    r.child('/', child: (context) => const HomePage());
 
     r.child('/password',
         child: (context) => const LoginPage(

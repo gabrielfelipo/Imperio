@@ -5,10 +5,11 @@ enum ImperioButtonViewModel { primary, secondary }
 class ImperioButton extends StatelessWidget {
   final String text;
   final double height;
+  final double width;
   final Color backgroundColor;
   final VoidCallback onPressed;
   final Image? icon;
-  final double? widthToIcon;
+  final double? distanceToBorder;
   final double? borderWidth;
   final Color? borderColor;
   final Color? textColor;
@@ -21,11 +22,12 @@ class ImperioButton extends StatelessWidget {
     required this.onPressed,
     required this.backgroundColor,
     this.icon,
-    this.widthToIcon,
+    this.distanceToBorder,
     this.textColor,
     this.model = ImperioButtonViewModel.primary,
     this.borderWidth,
     this.borderColor,
+    required this.width,
   });
 
   @override
@@ -33,6 +35,7 @@ class ImperioButton extends StatelessWidget {
     return FractionallySizedBox(
       child: Container(
         height: height,
+        width: width,
         decoration: BoxDecoration(
           color: backgroundColor,
           border: model == ImperioButtonViewModel.secondary
@@ -53,14 +56,14 @@ class ImperioButton extends StatelessWidget {
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const SizedBox(width: 32),
+              if (distanceToBorder != null) ...[
+                SizedBox(width: distanceToBorder!)
+              ],
               if (icon != null) ...[
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     SizedBox(
-                      width: 24,
-                      height: 24,
                       child: icon!,
                     ),
                   ],
@@ -79,13 +82,9 @@ class ImperioButton extends StatelessWidget {
                   ),
                 ),
               ),
-              const SizedBox(width: 32),
-
-              // SizedBox(
-              //         width: 24,
-              //         height: 24,
-              //         child: icon!,
-              //       ),
+              if (distanceToBorder != null) ...[
+                SizedBox(width: distanceToBorder!),
+              ]
             ],
           ),
         ),
