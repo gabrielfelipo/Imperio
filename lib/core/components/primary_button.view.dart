@@ -5,7 +5,7 @@ enum ImperioButtonViewModel { primary, secondary }
 class ImperioButton extends StatelessWidget {
   final String? text;
   final double height;
-  final double width;
+  final double? width;
   final Color backgroundColor;
   final VoidCallback onPressed;
   final Widget? icon;
@@ -27,7 +27,7 @@ class ImperioButton extends StatelessWidget {
     this.model = ImperioButtonViewModel.primary,
     this.borderWidth,
     this.borderColor,
-    required this.width,
+    this.width,
   });
 
   @override
@@ -35,7 +35,7 @@ class ImperioButton extends StatelessWidget {
     return FractionallySizedBox(
       child: Container(
         height: height,
-        width: width,
+        width: width ?? double.infinity,
         decoration: BoxDecoration(
           color: backgroundColor,
           border: model == ImperioButtonViewModel.secondary

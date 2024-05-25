@@ -93,7 +93,7 @@ class FactsPlayer extends StatelessWidget {
                           color: Colors.black,
                           fontWeight: FontWeight.bold,
                         )),
-                    const Text('Roludo',
+                    const Text('Carlos',
                         style: TextStyle(
                           fontSize: 14,
                           color: Colors.black,
