@@ -54,6 +54,7 @@ class ImperioButton extends StatelessWidget {
           onPressed: onPressed,
           child: Row(
             mainAxisSize: MainAxisSize.max,
+            crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               SizedBox(),

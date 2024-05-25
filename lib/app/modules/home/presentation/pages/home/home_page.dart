@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:imperio/app/modules/home/presentation/enums/league_type.card.dart';
 import 'package:imperio/app/modules/home/presentation/enums/match_event.icon.dart';
 import 'package:imperio/app/modules/home/presentation/enums/team.card.dart';
+import 'package:imperio/core/components/facts.view.dart';
 import 'package:imperio/core/components/primary_button.view.dart';
 import 'package:imperio/core/components/triangle_container.view.dart';
 import 'home_controller.dart';
@@ -18,33 +19,144 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        children: [
-          Container(
-            height: double.infinity,
-            width: double.infinity,
-            color: Colors.white,
+    return DefaultTabController(
+      length: 4,
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: const Color(0xfffcf6cf),
+          elevation: 0,
+          centerTitle: true,
+          title: Image.asset(
+            'assets/images/imperioLogo.png',
+            height: 25,
           ),
-          Container(
-            height: double.infinity,
-            width: double.infinity,
-            decoration: BoxDecoration(
-              gradient: LinearGradient(colors: [
-                const Color(0xfff5d70a).withOpacity(0.21),
-                const Color(0xffffffff).withOpacity(0)
-              ], begin: Alignment.topCenter, end: Alignment.bottomCenter),
+          surfaceTintColor: const Color(0xfffcf6cf),
+          bottom: PreferredSize(
+            preferredSize: const Size.fromHeight(40.0),
+            child: Container(
+                color: const Color(0xfffcf6cf),
+                child: const TabBar(
+                  isScrollable: true,
+                  indicatorColor: Colors.black,
+                  labelColor: Colors.black,
+                  labelStyle: TextStyle(
+                    fontSize: 12,
+                    fontFamily: 'Montserrat',
+                    fontWeight: FontWeight.w700,
+                  ),
+                  unselectedLabelStyle: TextStyle(
+                    fontSize: 12,
+                    fontFamily: 'Montserrat',
+                    fontWeight: FontWeight.w700,
+                  ),
+                  unselectedLabelColor: Colors.grey,
+                  tabs: [
+                    Tab(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: const [
+                          Icon(
+                            Icons.sports_outlined,
+                            size: 20,
+                          ),
+                          SizedBox(width: 8),
+                          Text(
+                            'Todos',
+                            style: TextStyle(
+                              fontSize: 12,
+                              fontFamily: 'Montserrat',
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Tab(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: const [
+                          Icon(
+                            Icons.sports_soccer_outlined,
+                            size: 20,
+                          ),
+                          SizedBox(width: 8),
+                          Text(
+                            'Futebol',
+                            style: TextStyle(
+                              fontSize: 12,
+                              fontFamily: 'Montserrat',
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Tab(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: const [
+                          Icon(
+                            Icons.sports_basketball_outlined,
+                            size: 20,
+                          ),
+                          SizedBox(width: 8),
+                          Text(
+                            'Basquete',
+                            style: TextStyle(
+                              fontSize: 12,
+                              fontFamily: 'Montserrat',
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Tab(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: const [
+                          Icon(
+                            Icons.sports_esports_outlined,
+                            size: 20,
+                          ),
+                          SizedBox(width: 8),
+                          Text(
+                            'E-Sports',
+                            style: TextStyle(
+                              fontSize: 12,
+                              fontFamily: 'Montserrat',
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                )),
+          ),
+        ),
+        body: Stack(
+          children: [
+            Container(
+              height: double.infinity,
+              width: double.infinity,
+              color: Colors.white,
             ),
-          ),
-          SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.all(0),
+            Container(
+              height: double.infinity,
+              width: double.infinity,
+              decoration: const BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [Color(0xfffcf6cf), Color(0xffffffff)],
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                ),
+              ),
+            ),
+            SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   const SizedBox(
-                    height: 64,
+                    height: 16,
                   ),
                   SizedBox(
                     height: 181,
@@ -81,6 +193,17 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                   const SizedBox(height: 32),
+                  const FactsPlayer(
+                    items: [
+                      'Perdeu 6 jogos seguidos',
+                      'Sequência de derrotas de 4 jogos em casa',
+                      'Marcou apenas 1 gol nos últimos 4 jogos',
+                      'Quando perdem por 1-0 fora, eles vencem 40% dos seus jogos',
+                      'Vencem o primeiro tempo em 16% de suas partidas',
+                      'Marcam 75% dos seus gols no segundo tempo',
+                    ],
+                    model: FactsViewModel.referee,
+                  ),
                   const Padding(
                     padding: EdgeInsets.only(left: 32),
                     child: Text(
@@ -432,7 +555,7 @@ class _HomePageState extends State<HomePage> {
                   const SizedBox(
                     height: 32,
                   ),
-                  Divider(
+                  const Divider(
                     color: Color(0xffefefef),
                   ),
                   Center(
@@ -442,15 +565,104 @@ class _HomePageState extends State<HomePage> {
                       width: 143,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 160,
                   ),
                 ],
               ),
             ),
-          ),
-        ],
+            Positioned(
+              left: 16,
+              right: 16,
+              bottom: 8,
+              child: CustomBottomNavBar(),
+            ),
+          ],
+        ),
       ),
+    );
+  }
+}
+
+class CustomBottomNavBar extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        CircleAvatar(
+          backgroundColor: Colors.black,
+          radius: 24,
+          child: IconButton(
+            icon: const Icon(Icons.menu),
+            color: Colors.white,
+            onPressed: () {},
+          ),
+        ),
+        Container(
+          padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 4),
+          decoration: BoxDecoration(
+            color: Colors.black,
+            borderRadius: BorderRadius.circular(70),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.5),
+                spreadRadius: 2,
+                blurRadius: 10,
+                offset: Offset(0, 3),
+              ),
+            ],
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              GestureDetector(
+                onTap: () {},
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: const Color(0xfff5d70a),
+                    shape: BoxShape.rectangle,
+                    borderRadius: BorderRadius.circular(100),
+                  ),
+                  child: const Padding(
+                    padding: EdgeInsets.symmetric(vertical: 12, horizontal: 24),
+                    child: Icon(
+                      Icons.home_filled,
+                      size: 24,
+                      color: Colors.black,
+                    ),
+                  ),
+                ),
+              ),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 24.0, vertical: 12),
+                child: Icon(
+                  Icons.sports,
+                  size: 24,
+                  color: Colors.grey,
+                ),
+              ),
+              const Padding(
+                padding: EdgeInsets.symmetric(vertical: 12, horizontal: 24),
+                child: Icon(
+                  Icons.bookmark_border,
+                  size: 24,
+                  color: Colors.grey,
+                ),
+              ),
+            ],
+          ),
+        ),
+        CircleAvatar(
+          child: Padding(
+            padding: const EdgeInsets.only(
+                left: 1.7, right: 1.5, top: 1.2, bottom: 2.7),
+            child: Image.asset('assets/images/mockupUserAvatar.png'),
+          ),
+          backgroundColor: Colors.black,
+          radius: 22,
+        ),
+      ],
     );
   }
 }
@@ -531,7 +743,7 @@ class BetCard extends StatelessWidget {
         boxShadow: [
           BoxShadow(
             color: Colors.black.withOpacity(0.08),
-            offset: Offset(0, 1),
+            offset: const Offset(0, 1),
             blurRadius: 4,
             spreadRadius: 2,
           ),
