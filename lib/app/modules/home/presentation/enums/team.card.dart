@@ -1,0 +1,4 @@
+enum TeamCard {
+  a,
+  b,
+}

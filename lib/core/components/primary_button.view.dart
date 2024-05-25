@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 enum ImperioButtonViewModel { primary, secondary }
 
 class ImperioButton extends StatelessWidget {
-  final String text;
+  final String? text;
   final double height;
-  final double width;
+  final double? width;
   final Color backgroundColor;
   final VoidCallback onPressed;
-  final Image? icon;
+  final Widget? icon;
   final double? distanceToBorder;
   final double? borderWidth;
   final Color? borderColor;
@@ -17,7 +17,7 @@ class ImperioButton extends StatelessWidget {
 
   const ImperioButton({
     super.key,
-    required this.text,
+    this.text,
     required this.height,
     required this.onPressed,
     required this.backgroundColor,
@@ -27,7 +27,7 @@ class ImperioButton extends StatelessWidget {
     this.model = ImperioButtonViewModel.primary,
     this.borderWidth,
     this.borderColor,
-    required this.width,
+    this.width,
   });
 
   @override
@@ -35,7 +35,7 @@ class ImperioButton extends StatelessWidget {
     return FractionallySizedBox(
       child: Container(
         height: height,
-        width: width,
+        width: width ?? double.infinity,
         decoration: BoxDecoration(
           color: backgroundColor,
           border: model == ImperioButtonViewModel.secondary
@@ -54,37 +54,37 @@ class ImperioButton extends StatelessWidget {
           onPressed: onPressed,
           child: Row(
             mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
+              SizedBox(),
               if (distanceToBorder != null) ...[
                 SizedBox(width: distanceToBorder!)
               ],
               if (icon != null) ...[
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    SizedBox(
-                      child: icon!,
-                    ),
-                  ],
-                )
+                Flexible(
+                  child: icon!,
+                ),
               ],
-              Expanded(
-                child: Center(
-                  child: Text(
-                    text,
-                    style: TextStyle(
-                      fontSize: 12,
-                      fontFamily: 'Montserrat',
-                      fontWeight: FontWeight.bold,
-                      color: textColor ?? Colors.black,
+              if (text != null) ...[
+                Expanded(
+                  child: Center(
+                    child: Text(
+                      text!,
+                      style: TextStyle(
+                        fontSize: 12,
+                        fontFamily: 'Montserrat',
+                        fontWeight: FontWeight.bold,
+                        color: textColor ?? Colors.black,
+                      ),
                     ),
                   ),
                 ),
-              ),
+              ],
               if (distanceToBorder != null) ...[
                 SizedBox(width: distanceToBorder!),
-              ]
+              ],
+              SizedBox(),
             ],
           ),
         ),
@@ -92,25 +92,3 @@ class ImperioButton extends StatelessWidget {
     );
   }
 }
-
-
-// return Row(
-//       mainAxisAlignment: MainAxisAlignment.center,
-//       children: <Widget>[
-//         Container(
-//           width: 44, // Define a largura desejada do elemento à esquerda
-//           height: 50, // Define a altura desejada do elemento à esquerda
-//           color: Colors.blue, // Cor de fundo para visualização
-//           // Outros widgets ou conteúdo conforme necessário
-//         ),
-//         SizedBox(width: 44), // Espaço de 44 unidades entre os elementos
-//         Center(
-//           child: Container(
-//             width: 100, // Define a largura desejada do elemento central
-//             height: 50, // Define a altura desejada do elemento central
-//             color: Colors.green, // Cor de fundo para visualização
-//             // Outros widgets ou conteúdo conforme necessário
-//           ),
-//         ),
-//       ],
-//     );

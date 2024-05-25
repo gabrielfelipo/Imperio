@@ -1,6 +1,8 @@
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:imperio/app/modules/home/presentation/ui/pages/home/home_page.dart';
+import 'package:imperio/app/modules/home/presentation/pages/home/home_page.dart';
 import 'package:imperio/app/modules/landing/presentation/pages/landing/landing_page.dart';
+import 'package:imperio/app/modules/match/presentation/pages/match/match_page.dart';
+import 'package:imperio/app/modules/search/presentation/pages/search/search_page.dart';
 import 'package:imperio/app/modules/users/data/datasources/login_datasource.dart';
 import 'package:imperio/app/modules/users/data/repositories/login_repository_impl.dart';
 import 'package:imperio/app/modules/users/domain/repositories/login_repository.dart';
@@ -27,7 +29,7 @@ class LoginModule extends Module {
 
   @override
   void routes(r) {
-    r.child('/', child: (context) => const HomePage());
+    r.child('/', child: (context) => const MatchPage());
 
     r.child('/password',
         child: (context) => const LoginPage(
@@ -36,9 +38,4 @@ class LoginModule extends Module {
 
     r.child('/home', child: (context) => const HomePage());
   }
-
-  // @override
-  // final List<ModularRoute> routes = [
-  //   ChildRoute(Modular.initialRoute, child: (_, args) => const HomePage()),
-  // ];
 }

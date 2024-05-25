@@ -15,7 +15,6 @@ class _LandingPageState extends State<LandingPage> {
   @override
   Widget build(BuildContext context) {
     final screenHeight = MediaQuery.of(context).size.height;
-    final screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       body: Column(
         children: [
@@ -65,8 +64,8 @@ class _LandingPageState extends State<LandingPage> {
               ],
             ),
           ),
-          const SizedBox(
-            height: 62,
+          SizedBox(
+            height: screenHeight / 20,
           ),
           Expanded(
             child: Column(
@@ -80,7 +79,7 @@ class _LandingPageState extends State<LandingPage> {
                         text: "Entrar com o google",
                         height: 56,
                         width: double.infinity,
-                        distanceToBorder: 32,
+                        // distanceToBorder: 32,
                         onPressed: () {
                           print("Google Acces");
                         },
@@ -101,7 +100,7 @@ class _LandingPageState extends State<LandingPage> {
                           text: "Entrar com Apple",
                           height: 56,
                           width: double.infinity,
-                          distanceToBorder: 32,
+                          // distanceToBorder: 32,
                           onPressed: () {
                             print("Apple Access");
                           },
@@ -116,7 +115,7 @@ class _LandingPageState extends State<LandingPage> {
                   ],
                 ),
                 const Center(
-                  child: const Row(
+                  child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       Expanded(
@@ -178,7 +177,7 @@ class _LandingPageState extends State<LandingPage> {
                             width: double.infinity,
                             model: ImperioButtonViewModel.primary,
                             onPressed: () {},
-                            backgroundColor: Color(0xFFF5D70A),
+                            backgroundColor: const Color(0xFFF5D70A),
                           ),
                         )),
                       ],
