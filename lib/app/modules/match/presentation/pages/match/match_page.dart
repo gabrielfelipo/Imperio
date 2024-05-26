@@ -6,6 +6,7 @@ import 'package:imperio/core/components/best_odd_card.view.dart';
 import 'package:imperio/core/components/facts.view.dart';
 import 'package:imperio/core/components/match_card.view.dart';
 import 'package:imperio/core/components/primary_button.view.dart';
+import 'package:imperio/core/components/share_button.view.dart';
 import 'match_controller.dart';
 
 class MatchPage extends StatefulWidget {
@@ -105,6 +106,23 @@ class BiggestOddsSheet extends StatefulWidget {
 class _BiggestOddsSheetState extends State<BiggestOddsSheet> {
   Color _backgroundColor = const Color(0xfff5d70a);
   bool _showContainer = false;
+  bool _otherOdds = false;
+
+  void otherOddsAction() {
+    setState(
+      () {
+        _otherOdds = true;
+      },
+    );
+  }
+
+  void bestOddsAction() {
+    setState(
+      () {
+        _otherOdds = false;
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -116,6 +134,9 @@ class _BiggestOddsSheetState extends State<BiggestOddsSheet> {
               ? const Color(0xffdee0df)
               : const Color(0xfff5d70a);
           _showContainer = proportion >= 0.97;
+          if (proportion < 0.97) {
+            _otherOdds = false;
+          }
         });
         return true;
       },
@@ -152,21 +173,27 @@ class _BiggestOddsSheetState extends State<BiggestOddsSheet> {
                           const SizedBox(width: 24),
                           ImperioButton(
                             text: 'Odds mais altas',
-                            textColor: Colors.white,
+                            textColor: _otherOdds ? Colors.black : Colors.white,
                             height: 47,
                             width: 133,
-                            onPressed: () {},
-                            backgroundColor: Colors.black,
-                            model: ImperioButtonViewModel.primary,
+                            onPressed: () {
+                              bestOddsAction();
+                            },
+                            backgroundColor:
+                                _otherOdds ? Colors.transparent : Colors.black,
+                            model: ImperioButtonViewModel.secondary,
                           ),
                           const SizedBox(width: 8),
                           ImperioButton(
                             text: 'Outras Odds',
-                            textColor: Colors.black,
+                            textColor: _otherOdds ? Colors.white : Colors.black,
                             height: 47,
                             width: 110,
-                            onPressed: () {},
-                            backgroundColor: Colors.transparent,
+                            onPressed: () {
+                              if (_showContainer) otherOddsAction();
+                            },
+                            backgroundColor:
+                                _otherOdds ? Colors.black : Colors.transparent,
                             model: ImperioButtonViewModel.secondary,
                           ),
                         ],
@@ -175,28 +202,62 @@ class _BiggestOddsSheetState extends State<BiggestOddsSheet> {
                         const SizedBox(
                           height: 16,
                         ),
-                      Container(
-                        width: double.infinity,
-                        margin: const EdgeInsets.symmetric(
-                          horizontal: 16.0,
-                          vertical: 0,
+                      if (!_otherOdds)
+                        Container(
+                          width: double.infinity,
+                          margin: const EdgeInsets.symmetric(
+                            horizontal: 16.0,
+                            vertical: 0,
+                          ),
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 0.0,
+                            vertical: _showContainer ? 20 : 0,
+                          ),
+                          decoration: BoxDecoration(
+                            color: _showContainer
+                                ? const Color(0xffc0c4c2)
+                                : Colors.transparent,
+                            borderRadius: BorderRadius.circular(36),
+                          ),
+                          child: const OddRow(),
                         ),
-                        padding: EdgeInsets.symmetric(
-                          horizontal: 0.0,
-                          vertical: _showContainer ? 20 : 0,
-                        ),
-                        decoration: BoxDecoration(
-                          color: _showContainer
-                              ? Color(0xffc0c4c2)
-                              : Colors.transparent,
-                          borderRadius: BorderRadius.circular(36),
-                        ),
-                        child: OddRow(),
-                      ),
-                      SizedBox(
+                      const SizedBox(
                         height: 4,
                       ),
-                      if (_showContainer) const BattorHouse()
+                      if (_showContainer && !_otherOdds)
+                        const BattorHouse()
+                      else if (_showContainer && _otherOdds)
+                        Column(
+                          children: [
+                            OtherOddsCard(
+                              isSponsor: true,
+                              betIconPath: 'assets/images/1xbetIcon.png',
+                              pairList: [
+                                Pair('Ambos times marcarão', 3.10),
+                                Pair('São paulo marcará o primeiro gol', 2.61),
+                                Pair('Mais de 4 Gols', 2.12),
+                              ],
+                            ),
+                            OtherOddsCard(
+                              isSponsor: false,
+                              betIconPath: 'assets/images/betsafeIcon.png',
+                              pairList: [
+                                Pair('Ambos times marcarão', 2.10),
+                                Pair('São paulo marcará o primeiro gol', 2.61),
+                                Pair('Mais de 4 Gols', 3.12),
+                              ],
+                            ),
+                            OtherOddsCard(
+                              isSponsor: false,
+                              betIconPath: 'assets/images/betssonIcon.png',
+                              pairList: [
+                                Pair('Ambos times marcarão', 3.10),
+                                Pair('São paulo marcará o primeiro gol', 4.61),
+                                Pair('Mais de 4 Gols', 2.12),
+                              ],
+                            ),
+                          ],
+                        )
                     ],
                   ),
                 ),
@@ -204,6 +265,136 @@ class _BiggestOddsSheetState extends State<BiggestOddsSheet> {
             ),
           );
         },
+      ),
+    );
+  }
+}
+
+class Pair {
+  final String key;
+  final double value;
+
+  Pair(this.key, this.value);
+}
+
+class OtherOddsCard extends StatelessWidget {
+  const OtherOddsCard({
+    super.key,
+    required this.isSponsor,
+    required this.betIconPath,
+    required this.pairList,
+  });
+
+  final bool isSponsor;
+  final String betIconPath;
+  final List<Pair> pairList;
+
+  @override
+  Widget build(BuildContext context) {
+    double highestOdd =
+        pairList.map((pair) => pair.value).reduce((a, b) => a > b ? a : b);
+
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 2),
+      decoration: BoxDecoration(
+        color: const Color(0xffc0c4c2),
+        borderRadius: BorderRadius.circular(20),
+      ),
+      child: Column(
+        children: [
+          const SizedBox(height: 24),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 24.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Column(
+                  children: [
+                    Image.asset(
+                      betIconPath,
+                      width: 87,
+                    ),
+                    if (isSponsor)
+                      Text(
+                        'Patrocinadora',
+                        style: imperioLabelStyle(13, FontWeight.bold),
+                      ),
+                  ],
+                ),
+                ShareButton(),
+              ],
+            ),
+          ),
+          const SizedBox(height: 16),
+          ...pairList.asMap().entries.map((entry) {
+            int index = entry.key;
+            Pair pair = entry.value;
+            bool isLast = index == pairList.length - 1;
+            return Column(
+              children: [
+                OtherOddsRow(
+                  title: pair.key,
+                  odd: pair.value.toString(),
+                  isBest: pair.value == highestOdd,
+                ),
+                if (!isLast)
+                  Divider(
+                    color: const Color(0xff898989).withOpacity(0.4),
+                  ),
+              ],
+            );
+          }).toList(),
+          const SizedBox(height: 8),
+        ],
+      ),
+    );
+  }
+}
+
+class OtherOddsRow extends StatelessWidget {
+  const OtherOddsRow(
+      {super.key,
+      required this.title,
+      required this.odd,
+      required this.isBest});
+
+  final String title;
+  final String odd;
+  final bool isBest;
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(24.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              if (isBest)
+                Container(
+                  margin: const EdgeInsets.only(bottom: 10),
+                  padding: const EdgeInsets.all(4),
+                  decoration: BoxDecoration(
+                      color: Colors.black,
+                      borderRadius: BorderRadius.circular(60)),
+                  child: Text(
+                    'ODD MAIS ALTA',
+                    style: imperioLabelStyle(10, FontWeight.bold,
+                        color: Colors.white),
+                  ),
+                ),
+              Text(
+                title,
+                style: subTitleLabel,
+              ),
+            ],
+          ),
+          Text(
+            odd,
+            style: titleLabel,
+          ),
+        ],
       ),
     );
   }
@@ -743,14 +934,7 @@ class MatchInformations extends StatelessWidget {
                               )
                             ],
                           ),
-                          ImperioButton(
-                              height: 36,
-                              width: 36,
-                              icon: Image.asset(
-                                'assets/images/shareIcon.png',
-                              ),
-                              onPressed: () {},
-                              backgroundColor: const Color(0xfff5d70a))
+                          ShareButton(),
                         ],
                       ),
                     )
