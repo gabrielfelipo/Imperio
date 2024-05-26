@@ -57,7 +57,7 @@ class ImperioButton extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              SizedBox(),
+              const SizedBox(),
               if (distanceToBorder != null) ...[
                 SizedBox(width: distanceToBorder!)
               ],
@@ -84,7 +84,7 @@ class ImperioButton extends StatelessWidget {
               if (distanceToBorder != null) ...[
                 SizedBox(width: distanceToBorder!),
               ],
-              SizedBox(),
+              const SizedBox(),
             ],
           ),
         ),

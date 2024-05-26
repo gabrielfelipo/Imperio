@@ -32,11 +32,11 @@ class TriangleContainer extends StatelessWidget {
   final Color color;
 
   const TriangleContainer({
-    Key? key,
+    super.key,
     required this.width,
     required this.height,
     required this.color,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

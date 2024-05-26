@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:imperio/core/components/primary_button.view.dart';
 
 class MenuAppBar extends StatefulWidget implements PreferredSizeWidget {
-  const MenuAppBar({Key? key}) : super(key: key);
+  const MenuAppBar({super.key});
 
   @override
   _MenuAppBarState createState() => _MenuAppBarState();
@@ -112,7 +112,7 @@ class _MenuAppBarState extends State<MenuAppBar> {
 }
 
 class HomeAppBar extends StatefulWidget implements PreferredSizeWidget {
-  const HomeAppBar({Key? key}) : super(key: key);
+  const HomeAppBar({super.key});
 
   @override
   _HomeAppBarState createState() => _HomeAppBarState();

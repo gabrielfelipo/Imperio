@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:imperio/core/components/primary_button.view.dart';
-import 'dart:ui' as ui;
 
 enum FactsViewModel { team, referee }
 
@@ -8,8 +7,7 @@ class FactsPlayer extends StatelessWidget {
   final List<String> items;
   final FactsViewModel model;
 
-  const FactsPlayer({Key? key, required this.items, required this.model})
-      : super(key: key);
+  const FactsPlayer({super.key, required this.items, required this.model});
 
   @override
   Widget build(BuildContext context) {
@@ -31,6 +29,7 @@ class FactsPlayer extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             if (model == FactsViewModel.team) ...[
@@ -147,7 +146,7 @@ class FactsPlayer extends StatelessWidget {
               height: 16,
             ),
             Padding(
-              padding: EdgeInsets.only(right: 8),
+              padding: const EdgeInsets.only(right: 8),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 crossAxisAlignment: CrossAxisAlignment.center,

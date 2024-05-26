@@ -23,11 +23,11 @@ extension MatchEventIconExtension on MatchEventIcon {
   Color get colorEvent {
     switch (this) {
       case MatchEventIcon.goal:
-        return Color(0xff646e69);
+        return const Color(0xff646e69);
       case MatchEventIcon.yellowFlag:
-        return Color(0xfff5d70a);
+        return const Color(0xfff5d70a);
       case MatchEventIcon.redFlag:
-        return Color(0xffde3b3b);
+        return const Color(0xffde3b3b);
     }
   }
 }
