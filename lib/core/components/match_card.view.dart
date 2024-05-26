@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:imperio/app/modules/home/presentation/enums/match_event.icon.dart';
 import 'package:imperio/app/modules/home/presentation/enums/team.card.dart';
-import 'package:imperio/app/modules/home/presentation/pages/home/home_page.dart';
 import 'package:imperio/core/components/match_event.view.dart';
 import 'package:imperio/core/components/match_progressbar.view.dart';
 

@@ -54,6 +54,10 @@ flutter:
     - assets/images/mockupUserAvatar.png
     - assets/images/imperioLogo.png
     - assets/images/footballField.png
+    - assets/images/paramountIcon.png
+    - assets/images/shareIcon.png
+    - assets/images/saoPaulo.png
+    - assets/images/palmeiras.png
 
   #   - images/a_dot_ham.jpeg
 
