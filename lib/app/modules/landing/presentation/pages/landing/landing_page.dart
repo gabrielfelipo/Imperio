@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:imperio/core/components/primary_button.view.dart';
 import 'landing_controller.dart';
 
@@ -10,7 +11,7 @@ class LandingPage extends StatefulWidget {
 }
 
 class _LandingPageState extends State<LandingPage> {
-  final _controller = LandingController();
+  final controler = Modular.get<LandingController>();
 
   @override
   Widget build(BuildContext context) {
@@ -163,7 +164,7 @@ class _LandingPageState extends State<LandingPage> {
                               height: 56,
                               width: double.infinity,
                               model: ImperioButtonViewModel.secondary,
-                              onPressed: () {},
+                              onPressed: controler.next,
                               backgroundColor: Colors.transparent,
                             ),
                           ),

@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:imperio/app/modules/home/presentation/enums/league_type.card.dart';
+import 'package:imperio/app/modules/home/presentation/pages/home/home_controller.dart';
 import 'package:imperio/core/components/bet_card.view.dart';
 import 'package:imperio/core/components/championship_card.view.dart';
 import 'package:imperio/core/components/custom_bottom_navbar.view.dart';
 import 'package:imperio/core/components/home_appbar.view.dart';
 import 'package:imperio/core/components/match_card.view.dart';
-import 'package:imperio/core/components/menu.view.dart';
+import 'package:imperio/app/modules/home/presentation/pages/menu/menu.view.dart';
 import 'package:imperio/core/components/popular_championship.view.dart';
 import 'package:imperio/core/components/primary_button.view.dart';
 import 'package:imperio/core/components/see_more.button.dart';
 import 'package:imperio/core/components/stake_banner.view.dart';
 import 'package:imperio/core/components/tip.view.dart';
-import 'home_controller.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -21,7 +22,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final _controller = HomeController();
+  final controller = Modular.get<HomeController>();
   bool isMenuOpen = false;
 
   void toggleMenu() {
@@ -249,20 +250,24 @@ class _HomePageState extends State<HomePage> {
                       },
                     ),
                   ),
-                  const Column(
+                  Column(
                     children: [
                       Padding(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                        child: MatchCard(),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 16, vertical: 8),
+                        child: MatchCard(
+                          isComplete: false,
+                        ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 4,
                       ),
                       Padding(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                        child: MatchCard(),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 16, vertical: 8),
+                        child: MatchCard(
+                          isComplete: false,
+                        ),
                       ),
                     ],
                   ),
@@ -464,7 +469,7 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
             ),
-            if (isMenuOpen) const MenuView(),
+            if (isMenuOpen) MenuView(),
             Positioned(
               left: 16,
               right: 16,

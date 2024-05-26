@@ -18,7 +18,7 @@ class LoginController {
         Modular.to.navigate('/password');
       case LoginStateView.password:
         postData();
-        Modular.to.navigate('/home');
+        Modular.to.navigate('/home/');
     }
   }
 

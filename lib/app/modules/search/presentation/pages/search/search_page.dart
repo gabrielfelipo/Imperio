@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:imperio/core/components/primary_button.view.dart';
 import 'search_controller.dart';
 
@@ -10,7 +11,7 @@ class SearchPage extends StatefulWidget {
 }
 
 class _SearchPageState extends State<SearchPage> {
-  final _controller = SearchControllerPage();
+  final controller = Modular.get<SearchControllerPage>();
 
   @override
   Widget build(BuildContext context) {
@@ -19,6 +20,7 @@ class _SearchPageState extends State<SearchPage> {
       appBar: AppBar(
         toolbarHeight: 110,
         elevation: 0,
+        automaticallyImplyLeading: false,
         flexibleSpace: Container(
           decoration: const BoxDecoration(
             gradient: LinearGradient(
@@ -37,7 +39,7 @@ class _SearchPageState extends State<SearchPage> {
                   height: 32,
                   width: 32,
                   onPressed: () {
-                    print("metra");
+                    controller.previous();
                   },
                   backgroundColor: const Color(0xfff5d70a),
                   icon: const Icon(
@@ -120,7 +122,6 @@ class _SearchPageState extends State<SearchPage> {
               Expanded(
                 child: LayoutBuilder(
                   builder: (context, constraints) {
-                    // Calculate the width of each item
                     double itemWidth = (constraints.maxWidth - (2 * 9)) / 3;
                     double itemHeight = 128.0;
                     double aspectRatio = itemWidth / itemHeight;

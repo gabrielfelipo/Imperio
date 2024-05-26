@@ -1,17 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:imperio/app/modules/home/presentation/enums/match_event.icon.dart';
 import 'package:imperio/app/modules/home/presentation/enums/team.card.dart';
+import 'package:imperio/app/modules/home/presentation/pages/home/home_controller.dart';
+import 'package:imperio/core/Labels.dart';
+import 'package:imperio/core/components/best_odd_card.view.dart';
 import 'package:imperio/core/components/match_event.view.dart';
 import 'package:imperio/core/components/match_progressbar.view.dart';
 
 class MatchCard extends StatefulWidget {
-  const MatchCard({super.key});
+  MatchCard({super.key, required this.isComplete});
+  final bool isComplete;
 
   @override
   _MatchCardState createState() => _MatchCardState();
 }
 
 class _MatchCardState extends State<MatchCard> {
+  final homeController = Modular.get<HomeController>();
+  late final bool isComplete;
+  @override
+  void initState() {
+    super.initState();
+    isComplete = widget.isComplete;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -173,6 +186,13 @@ class _MatchCardState extends State<MatchCard> {
               ),
             ],
           ),
+          if (isComplete)
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16.0),
+              child: Divider(
+                color: Color(0xffdee0df),
+              ),
+            ),
           const SizedBox(
             height: 13,
           ),
@@ -219,114 +239,15 @@ class _MatchCardState extends State<MatchCard> {
               ],
             ),
           ),
-          const SizedBox(
-            height: 13,
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(left: 16.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Text(
-                        'Casa',
-                        style: TextStyle(
-                            color: Color(0xff505854),
-                            fontFamily: 'Montserrat',
-                            fontSize: 10),
-                      ),
-                      SizedBox(
-                        width: 60,
-                        child: Image.asset(
-                          'assets/images/1xbetIcon.png',
-                          fit: BoxFit.contain,
-                        ),
-                      ),
-                      const Text(
-                        '3.2',
-                        style: TextStyle(
-                            fontFamily: 'Montserrat',
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500),
-                      ),
-                    ],
-                  ),
-                ),
-                Container(
-                  width: 1,
-                  height: 26,
-                  color: const Color(0xffdee0df),
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Text(
-                      'X',
-                      style: TextStyle(
-                          color: Color(0xff505854),
-                          fontFamily: 'Montserrat',
-                          fontSize: 10),
-                    ),
-                    SizedBox(
-                      width: 66,
-                      child: Image.asset(
-                        'assets/images/betsafeIcon.png',
-                        fit: BoxFit.contain,
-                      ),
-                    ),
-                    const Text(
-                      '2.6',
-                      style: TextStyle(
-                          fontFamily: 'Montserrat',
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500),
-                    ),
-                  ],
-                ),
-                Container(
-                  width: 1,
-                  height: 26,
-                  color: const Color(0xffdee0df),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(right: 16.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Text(
-                        'Fora',
-                        style: TextStyle(
-                            color: Color(0xff505854),
-                            fontFamily: 'Montserrat',
-                            fontSize: 10),
-                      ),
-                      SizedBox(
-                        width: 51,
-                        child: Image.asset(
-                          'assets/images/betssonIcon.png',
-                          fit: BoxFit.contain,
-                        ),
-                      ),
-                      const Text(
-                        '3.4',
-                        style: TextStyle(
-                            fontFamily: 'Montserrat',
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
+          if (!isComplete) ...[
+            const SizedBox(
+              height: 13,
             ),
-          ),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16.0),
+              child: OddRow(),
+            ),
+          ],
           const SizedBox(
             height: 13,
           ),
@@ -336,17 +257,81 @@ class _MatchCardState extends State<MatchCard> {
               color: Color(0xffdee0df),
             ),
           ),
-          const Padding(
-            padding: EdgeInsets.only(top: 4, bottom: 24),
-            child: Text(
-              'Ver mais',
-              style: TextStyle(
-                  fontFamily: 'Montserrat',
-                  fontSize: 12,
-                  fontWeight: FontWeight.bold,
-                  color: Color(0xff505854)),
+          if (isComplete) ...[
+            Padding(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 16.0, vertical: 24),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  IconText(
+                    icon: Icons.thumb_up_alt_outlined,
+                    text: '1.4 K',
+                  ),
+                  IconText(
+                    icon: Icons.star_rate_rounded,
+                    text: '1.4 K',
+                  ),
+                  IconText(
+                    icon: Icons.ios_share_outlined,
+                    text: '1.4 K',
+                  ),
+                  IconText(
+                    icon: Icons.remove_red_eye_outlined,
+                    text: '1.4 K',
+                  ),
+                ],
+              ),
             ),
+            SizedBox(
+              height: 16,
+            ),
+          ],
+          if (!isComplete)
+            Padding(
+              padding: EdgeInsets.only(top: 4, bottom: 24),
+              child: TextButton(
+                onPressed: homeController.toMatchModule,
+                child: const Text(
+                  'Ver mais',
+                  style: TextStyle(
+                      fontFamily: 'Montserrat',
+                      fontSize: 12,
+                      fontWeight: FontWeight.bold,
+                      color: Color(0xff505854)),
+                ),
+              ),
+            ),
+        ],
+      ),
+    );
+  }
+}
+
+class IconText extends StatelessWidget {
+  const IconText({super.key, required this.icon, required this.text});
+  final IconData icon;
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 71,
+      padding: const EdgeInsets.all(8),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(
+            icon,
+            size: 16,
           ),
+          SizedBox(
+            width: 10,
+          ),
+          Text(
+            text,
+            style: imperioLabelStyle(12, FontWeight.w400),
+          )
         ],
       ),
     );

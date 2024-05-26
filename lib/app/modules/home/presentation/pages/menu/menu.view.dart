@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:imperio/app/modules/home/presentation/pages/home/home_controller.dart';
 
 class MenuView extends StatelessWidget {
-  const MenuView({super.key});
+  MenuView({super.key});
+  final controller = Modular.get<HomeController>();
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +42,7 @@ class MenuView extends StatelessWidget {
               ),
             ),
             TextButton(
-              onPressed: () {},
+              onPressed: controller.toSportsSearch,
               child: const SizedBox(
                 width: double.infinity,
                 height: 52,

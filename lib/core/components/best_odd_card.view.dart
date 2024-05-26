@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:imperio/app/modules/match/presentation/pages/match/match_page.dart';
+import 'package:imperio/core/Labels.dart';
 
 class BestOddCard extends StatelessWidget {
   const BestOddCard({

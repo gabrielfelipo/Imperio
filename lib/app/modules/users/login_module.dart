@@ -1,6 +1,7 @@
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:imperio/app/modules/home/presentation/pages/home/home_page.dart';
-import 'package:imperio/app/modules/match/presentation/pages/match/match_page.dart';
+import 'package:imperio/app/modules/home/home_module.dart';
+import 'package:imperio/app/modules/landing/presentation/pages/landing/landing_controller.dart';
+import 'package:imperio/app/modules/landing/presentation/pages/landing/landing_page.dart';
 import 'package:imperio/app/modules/users/data/datasources/login_datasource.dart';
 import 'package:imperio/app/modules/users/data/repositories/login_repository_impl.dart';
 import 'package:imperio/app/modules/users/domain/repositories/login_repository.dart';
@@ -23,17 +24,25 @@ class LoginModule extends Module {
     i.addSingleton<LoginController>(
       () => LoginController(Modular.get<LoginUseCaseImpl>()),
     );
+    i.addSingleton<LandingController>(
+      () => LandingController(),
+    );
   }
 
   @override
   void routes(r) {
-    r.child('/', child: (context) => const MatchPage());
+    r.child('/', child: (context) => const LandingPage());
+
+    r.child('/email',
+        child: (context) => const LoginPage(
+              state: LoginStateView.email,
+            ));
 
     r.child('/password',
         child: (context) => const LoginPage(
               state: LoginStateView.password,
             ));
 
-    r.child('/home', child: (context) => const HomePage());
+    r.module('/home/', module: HomeModule());
   }
 }
