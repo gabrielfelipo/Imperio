@@ -46,7 +46,7 @@ class ChampionshipClashCard extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Image.asset(
+              Image.network(
                 championShipImagePath,
                 height: 24,
               ),

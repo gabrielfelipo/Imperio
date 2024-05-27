@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:imperio/app/modules/home/presentation/enums/league_type.card.dart';
+import 'package:imperio/core/my_colors.dart';
 
 class CampeonatoCard extends StatelessWidget {
   const CampeonatoCard({super.key, required this.leagueType});
@@ -15,7 +16,7 @@ class CampeonatoCard extends StatelessWidget {
             width: 270,
             height: 166,
             decoration: BoxDecoration(
-              color: const Color(0xfff5d70a),
+              color: MyColors.mainYellow,
               borderRadius: BorderRadius.circular(36),
             ),
           ),
@@ -24,7 +25,7 @@ class CampeonatoCard extends StatelessWidget {
             height: 166,
             decoration: BoxDecoration(
               gradient: LinearGradient(colors: [
-                const Color(0xfff5d70a).withOpacity(0.2),
+                MyColors.mainYellow.withOpacity(0.2),
                 const Color(0xff594e00).withOpacity(0.2)
               ], begin: Alignment.topLeft, end: Alignment.bottomRight),
               borderRadius: BorderRadius.circular(36),

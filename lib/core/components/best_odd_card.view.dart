@@ -16,43 +16,50 @@ class BestOddCard extends StatelessWidget {
         color: const Color(0xffc0c4c2),
         borderRadius: BorderRadius.circular(36),
       ),
-      child: const OddRow(),
+      // child: const OddRow(),
     );
   }
 }
 
 class OddRow extends StatelessWidget {
-  const OddRow({super.key});
+  const OddRow(
+      {super.key,
+      required this.oddHouse,
+      required this.oddDraw,
+      required this.oddOutside});
+  final String oddHouse;
+  final String oddDraw;
+  final String oddOutside;
 
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        const InsideBestOddCard(
+        InsideBestOddCard(
           variavel: "Casa",
           imagePath: 'assets/images/1xbetIcon.png',
-          value: '3.2',
+          value: oddHouse,
         ),
         Container(
           height: 26,
           width: 1,
           color: const Color(0xff646e69),
         ),
-        const InsideBestOddCard(
+        InsideBestOddCard(
           variavel: "Empate",
           imagePath: 'assets/images/betsafeIcon.png',
-          value: '2.6',
+          value: oddDraw,
         ),
         Container(
           height: 26,
           width: 1,
           color: const Color(0xff646e69),
         ),
-        const InsideBestOddCard(
+        InsideBestOddCard(
           variavel: "Fora",
           imagePath: 'assets/images/betssonIcon.png',
-          value: '3.4',
+          value: oddOutside,
         )
       ],
     );

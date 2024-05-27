@@ -42,6 +42,8 @@ class TipCard extends StatelessWidget {
                 padding: const EdgeInsets.only(left: 16.0, right: 32),
                 child: Text(
                   title,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
                   style: const TextStyle(
                     fontFamily: 'Montserrat',
                     fontSize: 14,

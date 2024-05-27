@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:imperio/app/modules/match/domain/models/dtos/odd_match_dto.dart';
 import 'package:imperio/core/components/battor_house.view.dart';
 import 'package:imperio/core/components/best_odd_card.view.dart';
 import 'package:imperio/core/components/other_odds.view.dart';
 import 'package:imperio/core/components/primary_button.view.dart';
+import 'package:imperio/core/my_colors.dart';
 import 'package:imperio/core/structures/Pair.dart';
 
 class BiggestOddsSheet extends StatefulWidget {
-  const BiggestOddsSheet({super.key});
-
+  const BiggestOddsSheet({super.key, required this.odds});
+  final List<OddsMatchDto> odds;
   @override
   _BiggestOddsSheetState createState() => _BiggestOddsSheetState();
 }
 
 class _BiggestOddsSheetState extends State<BiggestOddsSheet> {
-  Color _backgroundColor = const Color(0xfff5d70a);
+  Color _backgroundColor = MyColors.mainYellow;
   bool _showContainer = false;
   bool _otherOdds = false;
 
@@ -41,7 +43,7 @@ class _BiggestOddsSheetState extends State<BiggestOddsSheet> {
         setState(() {
           _backgroundColor = proportion >= 0.97
               ? const Color(0xffdee0df)
-              : const Color(0xfff5d70a);
+              : MyColors.mainYellow;
           _showContainer = proportion >= 0.97;
           if (proportion < 0.97) {
             _otherOdds = false;
@@ -111,7 +113,7 @@ class _BiggestOddsSheetState extends State<BiggestOddsSheet> {
                         const SizedBox(
                           height: 16,
                         ),
-                      if (!_otherOdds)
+                      if (!_otherOdds && widget.odds.length > 0)
                         Container(
                           width: double.infinity,
                           margin: const EdgeInsets.symmetric(
@@ -128,13 +130,21 @@ class _BiggestOddsSheetState extends State<BiggestOddsSheet> {
                                 : Colors.transparent,
                             borderRadius: BorderRadius.circular(36),
                           ),
-                          child: const OddRow(),
+                          child: OddRow(
+                              oddHouse: (widget.odds[0].teamA1xbetOdd / 10000)
+                                  .toStringAsFixed(1),
+                              oddDraw: (widget.odds[0].drawBetsafeOdd / 10000)
+                                  .toStringAsFixed(1),
+                              oddOutside:
+                                  (widget.odds[0].teamBBetssonOdd / 10000)
+                                      .toStringAsFixed(1)),
                         ),
                       const SizedBox(
                         height: 4,
                       ),
-                      if (_showContainer && !_otherOdds)
-                        const BattorHouse()
+                      if (_showContainer && !_otherOdds && !widget.odds.isEmpty)
+                        BattorHouse(odds: widget.odds[0])
+                      // Container()
                       else if (_showContainer && _otherOdds)
                         Column(
                           children: [

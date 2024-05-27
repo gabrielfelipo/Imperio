@@ -2,7 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:imperio/core/Labels.dart';
 
 class LatestClashesCard extends StatelessWidget {
-  const LatestClashesCard({super.key});
+  const LatestClashesCard(
+      {super.key,
+      required this.teamAWon,
+      required this.teamBWon,
+      required this.draw});
+
+  final double teamAWon;
+  final double teamBWon;
+  final double draw;
 
   @override
   Widget build(BuildContext context) {
@@ -18,15 +26,15 @@ class LatestClashesCard extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          const LatestClashesTeam(
+          LatestClashesTeam(
               name: 'São Paulo',
               imagePath: 'assets/images/saoPaulo.png',
-              victories: '2'),
+              victories: teamAWon.toStringAsFixed(0)),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                '2',
+                draw.toStringAsFixed(0),
                 style:
                     imperioLabelStyle(24, FontWeight.w500, color: Colors.white),
               ),
@@ -37,10 +45,10 @@ class LatestClashesCard extends StatelessWidget {
               ),
             ],
           ),
-          const LatestClashesTeam(
+          LatestClashesTeam(
               name: 'Palmeiras',
               imagePath: 'assets/images/palmeiras.png',
-              victories: '2')
+              victories: teamBWon.toStringAsFixed(0))
         ],
       ),
     );

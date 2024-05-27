@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:imperio/core/components/primary_button.view.dart';
+import 'package:imperio/core/my_colors.dart';
 import 'landing_controller.dart';
 
 class LandingPage extends StatefulWidget {
@@ -178,7 +179,7 @@ class _LandingPageState extends State<LandingPage> {
                             width: double.infinity,
                             model: ImperioButtonViewModel.primary,
                             onPressed: () {},
-                            backgroundColor: const Color(0xFFF5D70A),
+                            backgroundColor: MyColors.mainYellow,
                           ),
                         )),
                       ],

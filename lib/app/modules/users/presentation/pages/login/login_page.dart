@@ -3,6 +3,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:imperio/app/modules/users/presentation/enums/login_state.view.dart';
 import 'package:imperio/app/modules/users/presentation/pages/login/login_controller.dart';
 import 'package:imperio/core/components/primary_button.view.dart';
+import 'package:imperio/core/my_colors.dart';
 
 class LoginPage extends StatefulWidget {
   final LoginStateView state;
@@ -71,7 +72,7 @@ class _LoginPageState extends State<LoginPage> {
               onPressed: () {
                 controler.next(widget.state);
               },
-              backgroundColor: const Color(0xFFF5D70A),
+              backgroundColor: MyColors.mainYellow,
             ),
             const Spacer(flex: 5)
           ],

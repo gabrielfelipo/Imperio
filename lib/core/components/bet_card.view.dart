@@ -42,8 +42,11 @@ class BetCard extends StatelessWidget {
           CircleAvatar(
             radius: 20,
             child: ClipOval(
-              child: Image.asset(
+              child: Image.network(
                 imageUrl,
+                fit: BoxFit.cover,
+                width: 40,
+                height: 40,
               ),
             ),
           ),
@@ -88,11 +91,12 @@ class BetCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Image.asset(
-                'assets/images/bet365Icon.png',
-                height: 40,
-                width: 40,
-              ),
+              Text(betSource),
+              // Image.asset(
+              //   'assets/images/bet365Icon.png',
+              //   height: 40,
+              //   width: 40,
+              // ),
               Text(
                 betOdds,
                 style: const TextStyle(

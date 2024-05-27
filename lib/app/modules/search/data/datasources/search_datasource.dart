@@ -1,4 +1,3 @@
 abstract class SearchDataSource {
-  Future<void> call();
+  Future<List<Map<String, dynamic>>> call();
 }
-  

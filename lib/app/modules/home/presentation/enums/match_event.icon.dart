@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:imperio/core/my_colors.dart';
 
 enum MatchEventIcon {
   redFlag,
@@ -25,7 +26,7 @@ extension MatchEventIconExtension on MatchEventIcon {
       case MatchEventIcon.goal:
         return const Color(0xff646e69);
       case MatchEventIcon.yellowFlag:
-        return const Color(0xfff5d70a);
+        return MyColors.mainYellow;
       case MatchEventIcon.redFlag:
         return const Color(0xffde3b3b);
     }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:imperio/core/components/primary_button.view.dart';
+import 'package:imperio/core/my_colors.dart';
 
 class ShareButton extends StatelessWidget {
   const ShareButton({super.key});
@@ -13,6 +14,6 @@ class ShareButton extends StatelessWidget {
           'assets/images/shareIcon.png',
         ),
         onPressed: () {},
-        backgroundColor: const Color(0xfff5d70a));
+        backgroundColor: MyColors.mainYellow);
   }
 }

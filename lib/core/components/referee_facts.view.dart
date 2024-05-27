@@ -3,10 +3,19 @@ import 'package:imperio/core/components/facts.view.dart';
 import 'package:imperio/core/Labels.dart';
 
 class RefereeFacts extends StatelessWidget {
-  const RefereeFacts({super.key});
+  const RefereeFacts(
+      {super.key,
+      required this.facts,
+      required this.name,
+      required this.image});
+
+  final String facts;
+  final String name;
+  final String image;
 
   @override
   Widget build(BuildContext context) {
+    List<String> factsReferee = facts.split(".");
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -21,51 +30,19 @@ class RefereeFacts extends StatelessWidget {
           height: 420,
           child: ListView(
             scrollDirection: Axis.horizontal,
-            children: const [
-              SizedBox(
+            children: [
+              const SizedBox(
                 width: 16,
               ),
               Padding(
-                padding: EdgeInsets.symmetric(vertical: 10.0),
-                child: FactsPlayer(
-                  items: [
-                    'Perdeu 6 jogos seguidos',
-                    'Sequência de derrotas de 4 jogos em casa',
-                    'Marcou apenas 1 gol nos últimos 4 jogos',
-                    'Quando perdem por 1-0 fora, eles vencem 40% dos seus jogos',
-                  ],
-                  model: FactsViewModel.referee,
-                ),
-              ),
-              SizedBox(width: 16),
-              Padding(
-                padding: EdgeInsets.symmetric(vertical: 10.0),
-                child: FactsPlayer(
-                  items: [
-                    'Perdeu 6 jogos seguidos',
-                    'Sequência de derrotas de 4 jogos em casa',
-                    'Marcou apenas 1 gol nos últimos 4 jogos',
-                    'Quando perdem por 1-0 fora, eles vencem 40% dos seus jogos',
-                  ],
-                  model: FactsViewModel.referee,
-                ),
-              ),
-              SizedBox(width: 16),
-              Padding(
-                padding: EdgeInsets.symmetric(vertical: 10.0),
-                child: FactsPlayer(
-                  items: [
-                    'Perdeu 6 jogos seguidos',
-                    'Sequência de derrotas de 4 jogos em casa',
-                    'Marcou apenas 1 gol nos últimos 4 jogos',
-                    'Quando perdem por 1-0 fora, eles vencem 40% dos seus jogos',
-                  ],
-                  model: FactsViewModel.referee,
-                ),
-              ),
-              SizedBox(
-                width: 16,
-              ),
+                  padding: const EdgeInsets.symmetric(vertical: 10.0),
+                  child: FactsPlayer(
+                    items: factsReferee,
+                    model: FactsViewModel.referee,
+                    referee: name,
+                    refereeImage: image,
+                  )),
+              const SizedBox(width: 16),
             ],
           ),
         ),

@@ -2,12 +2,35 @@ import 'package:flutter/material.dart';
 import 'package:imperio/core/components/card_count.view.dart';
 import 'package:imperio/core/components/share_button.view.dart';
 import 'package:imperio/core/Labels.dart';
+import 'package:intl/intl.dart';
 
 class MatchInformations extends StatelessWidget {
-  const MatchInformations({super.key});
+  const MatchInformations(
+      {super.key,
+      required this.channels,
+      required this.date,
+      required this.stadium,
+      required this.referee,
+      required this.yellowCardMedia,
+      required this.redCardMedia});
+
+  final String channels;
+  final String date;
+  final String stadium;
+  final String referee;
+  final double yellowCardMedia;
+  final double redCardMedia;
+
+  String dateFormater(String data) {
+    DateTime dateTime = DateTime.parse(data);
+    String formatedDate = DateFormat('dd/MM/yyyy, HH:mm').format(dateTime);
+
+    return formatedDate;
+  }
 
   @override
   Widget build(BuildContext context) {
+    String formatedDate = dateFormater(date);
     return Column(
       children: [
         Text(
@@ -41,9 +64,14 @@ class MatchInformations extends StatelessWidget {
                               const SizedBox(
                                 width: 8,
                               ),
-                              Text(
-                                'Paramount',
-                                style: subTitleBoldLabel,
+                              SizedBox(
+                                width: 100,
+                                child: Text(
+                                  channels,
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: subTitleBoldLabel,
+                                ),
                               )
                             ],
                           ),
@@ -68,7 +96,7 @@ class MatchInformations extends StatelessWidget {
                       style: subTitleLabel,
                     ),
                     Text(
-                      '31/10/2023, 18:30',
+                      formatedDate,
                       style: subTitleBoldLabel,
                     )
                   ],
@@ -84,14 +112,14 @@ class MatchInformations extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      'Estágio',
+                      'Estádio',
                       style: subTitleLabel,
                     ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         Text(
-                          'Morumbi - São Paulo',
+                          stadium,
                           style: subTitleBoldLabel,
                         ),
                         Row(
@@ -131,9 +159,14 @@ class MatchInformations extends StatelessWidget {
                           'Árbitro',
                           style: subTitleLabel,
                         ),
-                        Text(
-                          'André Luiz\nSkettino Policarpo',
-                          style: subTitleBoldLabel,
+                        SizedBox(
+                          width: 140,
+                          child: Text(
+                            referee,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                            style: subTitleBoldLabel,
+                          ),
                         )
                       ],
                     ),
@@ -144,18 +177,19 @@ class MatchInformations extends StatelessWidget {
                           'Média de cartões',
                           style: subTitleLabel,
                         ),
-                        const Row(
+                        Row(
                           children: [
                             CardCount(
                               color: Color(0xffde3b3b),
-                              value: '0.65',
+                              value: (redCardMedia / 100000).toStringAsFixed(2),
                             ),
                             SizedBox(
                               width: 8,
                             ),
                             CardCount(
                               color: Color(0xfff5d70a),
-                              value: '1.32',
+                              value:
+                                  (yellowCardMedia / 10000).toStringAsFixed(2),
                             )
                           ],
                         )

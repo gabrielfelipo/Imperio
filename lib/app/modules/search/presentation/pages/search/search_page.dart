@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:imperio/core/components/primary_button.view.dart';
+import 'package:imperio/core/my_colors.dart';
 import 'search_controller.dart';
 
 class SearchPage extends StatefulWidget {
@@ -12,6 +13,17 @@ class SearchPage extends StatefulWidget {
 
 class _SearchPageState extends State<SearchPage> {
   final controller = Modular.get<SearchControllerPage>();
+
+  @override
+  void initState() {
+    super.initState();
+    getData();
+  }
+
+  void getData() async {
+    await controller.getData();
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +53,7 @@ class _SearchPageState extends State<SearchPage> {
                   onPressed: () {
                     controller.previous();
                   },
-                  backgroundColor: const Color(0xfff5d70a),
+                  backgroundColor: MyColors.mainYellow,
                   icon: const Icon(
                     Icons.arrow_back_ios,
                     size: 16,
@@ -133,26 +145,31 @@ class _SearchPageState extends State<SearchPage> {
                         crossAxisSpacing: 9.0,
                         childAspectRatio: aspectRatio,
                       ),
-                      itemCount: 25,
+                      itemCount: controller.sports.length,
                       itemBuilder: (context, index) {
                         return Container(
                           height: 128,
+                          padding: EdgeInsets.symmetric(horizontal: 16),
                           decoration: BoxDecoration(
                             color: const Color(0xFFF2EED6),
                             borderRadius: BorderRadius.circular(36),
                           ),
-                          child: const Column(
+                          child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Icon(
-                                Icons.sports_soccer,
-                                size: 31,
-                                color: Colors.black,
-                              ),
-                              SizedBox(height: 16),
+                              // const Icon(
+                              //   Icons.sports_soccer,
+                              //   size: 31,
+                              //   color: Colors.black,
+                              // ),
+                              Image.network(controller.sports[index].image,
+                                  height: 31, width: 31),
+                              const SizedBox(height: 16),
                               Text(
-                                'Volei',
-                                style: TextStyle(
+                                controller.sports[index].name,
+                                // maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                                style: const TextStyle(
                                   color: Color(0xFF505854),
                                   fontSize: 16,
                                   fontFamily: 'Montserrat',

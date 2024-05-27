@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:imperio/app/modules/match/domain/models/dtos/odd_match_dto.dart';
 import 'package:imperio/core/Labels.dart';
 
 class BattorHouse extends StatelessWidget {
   const BattorHouse({
     super.key,
+    required this.odds,
   });
+
+  final OddsMatchDto odds;
 
   @override
   Widget build(BuildContext context) {
@@ -54,28 +58,46 @@ class BattorHouse extends StatelessWidget {
                 ],
               ),
             ),
-            const BattorHouseLine(
+            BattorHouseLine(
               imagePath: 'assets/images/1xbetIcon.png',
               valuesBattorHouse: [
-                ValueBattorHouse(value: "3.2", isBlack: true),
-                ValueBattorHouse(value: "2.6", isBlack: false),
-                ValueBattorHouse(value: "2.6", isBlack: false),
+                ValueBattorHouse(
+                    value: (odds.teamA1xbetOdd / 10000).toStringAsFixed(1),
+                    isBlack: true),
+                ValueBattorHouse(
+                    value: (odds.draw1xbetOdd / 10000).toStringAsFixed(1),
+                    isBlack: false),
+                ValueBattorHouse(
+                    value: (odds.teamB1xbetOdd / 10000).toStringAsFixed(1),
+                    isBlack: false),
               ],
             ),
-            const BattorHouseLine(
+            BattorHouseLine(
               imagePath: 'assets/images/betsafeIcon.png',
               valuesBattorHouse: [
-                ValueBattorHouse(value: "2.2", isBlack: false),
-                ValueBattorHouse(value: "2.6", isBlack: true),
-                ValueBattorHouse(value: "2.1", isBlack: false),
+                ValueBattorHouse(
+                    value: (odds.teamABetsafeOdd / 10000).toStringAsFixed(1),
+                    isBlack: false),
+                ValueBattorHouse(
+                    value: (odds.drawBetsafeOdd / 10000).toStringAsFixed(1),
+                    isBlack: true),
+                ValueBattorHouse(
+                    value: (odds.teamBBetsafeOdd / 10000).toStringAsFixed(1),
+                    isBlack: false),
               ],
             ),
-            const BattorHouseLine(
+            BattorHouseLine(
               imagePath: 'assets/images/betssonIcon.png',
               valuesBattorHouse: [
-                ValueBattorHouse(value: "2.6", isBlack: false),
-                ValueBattorHouse(value: "2.6", isBlack: false),
-                ValueBattorHouse(value: "3.4", isBlack: true),
+                ValueBattorHouse(
+                    value: (odds.teamABetssonOdd / 10000).toStringAsFixed(1),
+                    isBlack: false),
+                ValueBattorHouse(
+                    value: (odds.drawBetssonOdd / 10000).toStringAsFixed(1),
+                    isBlack: false),
+                ValueBattorHouse(
+                    value: (odds.teamBBetssonOdd / 10000).toStringAsFixed(1),
+                    isBlack: true),
               ],
             ),
           ],

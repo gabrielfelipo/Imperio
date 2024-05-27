@@ -16,19 +16,54 @@ class StakeBanner extends StatelessWidget {
       ),
       child: Row(
         children: [
-          Image.asset(
-            logoPath,
-            height: 40,
-          ),
+          SizedBox(
+              width: 80,
+              child: Text(
+                logoPath,
+              )),
+          // Image.asset(
+          //   logoPath,
+          //   height: 40,
+          // ),
           const SizedBox(width: 16),
           Expanded(
-            child: Text(
-              description,
-              style: const TextStyle(
-                fontFamily: 'Montserrat',
-                fontSize: 16,
-                color: Colors.black,
-                fontWeight: FontWeight.w500,
+            child: RichText(
+              text: TextSpan(
+                style: const TextStyle(
+                  fontFamily: 'Montserrat',
+                  fontSize: 16,
+                  color: Colors.black,
+                  fontWeight: FontWeight.w500,
+                ),
+                children: [
+                  const TextSpan(
+                    text: 'Entre e tenha agora ',
+                    style: TextStyle(
+                      fontFamily: 'Montserrat',
+                      fontSize: 16,
+                      color: Colors.black,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  TextSpan(
+                    text: 'R\$ $description',
+                    style: const TextStyle(
+                      fontFamily: 'Montserrat',
+                      fontSize: 16,
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const TextSpan(
+                    text: ' de desconto!',
+                    style: TextStyle(
+                      fontFamily: 'Montserrat',
+                      fontSize: 16,
+                      color: Colors.black,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ],
               ),
               softWrap: true,
             ),

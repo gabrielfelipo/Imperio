@@ -3,10 +3,26 @@ import 'package:imperio/core/components/facts.view.dart';
 import 'package:imperio/core/Labels.dart';
 
 class TeamFacts extends StatelessWidget {
-  const TeamFacts({super.key});
+  const TeamFacts(
+      {super.key,
+      required this.teamAFacts,
+      required this.teamBFacts,
+      required this.teamA,
+      required this.teamAImage,
+      required this.teamB,
+      required this.teamBImage});
+
+  final String teamAFacts;
+  final String teamA;
+  final String teamAImage;
+  final String teamBFacts;
+  final String teamB;
+  final String teamBImage;
 
   @override
   Widget build(BuildContext context) {
+    List<String> factsA = teamAFacts.split(".");
+    List<String> factsB = teamBFacts.split(".");
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -21,55 +37,30 @@ class TeamFacts extends StatelessWidget {
           height: 420,
           child: ListView(
             scrollDirection: Axis.horizontal,
-            children: const [
-              SizedBox(
+            children: [
+              const SizedBox(
                 width: 16,
               ),
               Padding(
-                padding: EdgeInsets.symmetric(vertical: 10.0),
+                padding: const EdgeInsets.symmetric(vertical: 10.0),
                 child: FactsPlayer(
-                  items: [
-                    'Perdeu 6 jogos seguidos',
-                    'Sequência de derrotas de 4 jogos em casa',
-                    'Marcou apenas 1 gol nos últimos 4 jogos',
-                    'Quando perdem por 1-0 fora, eles vencem 40% dos seus jogos',
-                    'Vencem o primeiro tempo em 16% de suas partidas',
-                    'Marcam 75% dos seus gols no segundo tempo',
-                  ],
+                  team: teamA,
+                  teamImage: teamAImage,
+                  items: factsA,
                   model: FactsViewModel.team,
                 ),
               ),
-              SizedBox(width: 16),
+              const SizedBox(width: 16),
               Padding(
-                padding: EdgeInsets.symmetric(vertical: 10.0),
+                padding: const EdgeInsets.symmetric(vertical: 10.0),
                 child: FactsPlayer(
-                  items: [
-                    'Perdeu 6 jogos seguidos',
-                    'Sequência de derrotas de 4 jogos em casa',
-                    'Marcou apenas 1 gol nos últimos 4 jogos',
-                    'Quando perdem por 1-0 fora, eles vencem 40% dos seus jogos',
-                    'Vencem o primeiro tempo em 16% de suas partidas',
-                    'Marcam 75% dos seus gols no segundo tempo',
-                  ],
+                  team: teamB,
+                  teamImage: teamBImage,
+                  items: factsB,
                   model: FactsViewModel.team,
                 ),
               ),
-              SizedBox(width: 16),
-              Padding(
-                padding: EdgeInsets.symmetric(vertical: 10.0),
-                child: FactsPlayer(
-                  items: [
-                    'Perdeu 6 jogos seguidos',
-                    'Sequência de derrotas de 4 jogos em casa',
-                    'Marcou apenas 1 gol nos últimos 4 jogos',
-                    'Quando perdem por 1-0 fora, eles vencem 40% dos seus jogos',
-                    'Vencem o primeiro tempo em 16% de suas partidas',
-                    'Marcam 75% dos seus gols no segundo tempo',
-                  ],
-                  model: FactsViewModel.team,
-                ),
-              ),
-              SizedBox(
+              const SizedBox(
                 width: 16,
               ),
             ],

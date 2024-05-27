@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:imperio/app/modules/match/domain/models/dtos/last_match_dto.dart';
 import 'package:imperio/core/components/championship_clash_card.view.dart';
 import 'package:imperio/core/components/latest_clash_card.view.dart';
 import 'package:imperio/core/Labels.dart';
 
 class LatestClashes extends StatelessWidget {
-  const LatestClashes({super.key, required this.screenSize});
+  const LatestClashes(
+      {super.key, required this.screenSize, required this.lastMaches});
   final double screenSize;
+
+  final List<LastMatchDto> lastMaches;
 
   @override
   Widget build(BuildContext context) {
@@ -22,44 +26,32 @@ class LatestClashes extends StatelessWidget {
             style: imperioLabelStyle(18, FontWeight.bold, color: Colors.white),
           ),
           const SizedBox(height: 24),
-          const LatestClashesCard(),
+          LatestClashesCard(
+              teamAWon: lastMaches[0].teamAWon / 1000,
+              teamBWon: lastMaches[0].teamBWon / 1000,
+              draw: lastMaches[0].draw / 1000),
           const SizedBox(height: 12),
-          const SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Row(
-              children: [
-                SizedBox(width: 16),
-                ChampionshipClashCard(
-                  name: 'Brasileirão serie A',
-                  championShipImagePath: 'assets/images/serieAIcon.png',
-                  teamAImagePath: 'assets/images/saoPaulo.png',
-                  teamBImagePath: 'assets/images/palmeiras.png',
-                  teamAGoals: '2',
-                  teamBGoals: '2',
-                  date: '01/08/2023',
-                ),
-                SizedBox(width: 16),
-                ChampionshipClashCard(
-                  name: 'Libertadores',
-                  championShipImagePath: 'assets/images/serieAIcon.png',
-                  teamAImagePath: 'assets/images/saoPaulo.png',
-                  teamBImagePath: 'assets/images/palmeiras.png',
-                  teamAGoals: '1',
-                  teamBGoals: '0',
-                  date: '05/08/2023',
-                ),
-                SizedBox(width: 16),
-                ChampionshipClashCard(
-                  name: 'Champions League',
-                  championShipImagePath: 'assets/images/serieAIcon.png',
-                  teamAImagePath: 'assets/images/saoPaulo.png',
-                  teamBImagePath: 'assets/images/palmeiras.png',
-                  teamAGoals: '3',
-                  teamBGoals: '1',
-                  date: '10/08/2023',
-                ),
-                SizedBox(width: 16),
-              ],
+          SizedBox(
+            height: 160,
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: lastMaches.length,
+              itemBuilder: (context, index) {
+                return Padding(
+                  padding: const EdgeInsets.only(left: 16.0),
+                  child: ChampionshipClashCard(
+                    name: lastMaches[index].championshipName,
+                    teamAImagePath: 'assets/images/saoPaulo.png',
+                    teamBImagePath: 'assets/images/palmeiras.png',
+                    teamAGoals:
+                        (lastMaches[index].teamAWon / 1000).toStringAsFixed(0),
+                    teamBGoals:
+                        (lastMaches[index].teamBWon / 1000).toStringAsFixed(0),
+                    date: '',
+                    championShipImagePath: lastMaches[index].championshipImage,
+                  ),
+                );
+              },
             ),
           ),
           SizedBox(

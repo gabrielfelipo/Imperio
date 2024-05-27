@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:imperio/core/components/primary_button.view.dart';
+import 'package:imperio/core/my_colors.dart';
 
 class RedirectionTextButton extends StatelessWidget {
   const RedirectionTextButton(
@@ -27,7 +28,7 @@ class RedirectionTextButton extends StatelessWidget {
         ImperioButton(
           height: 48,
           onPressed: action,
-          backgroundColor: const Color(0xfff5d70a),
+          backgroundColor: MyColors.mainYellow,
           icon: const Icon(
             Icons.arrow_forward,
             size: 26,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:imperio/core/my_colors.dart';
 
 class CustomBottomNavBar extends StatefulWidget {
   final VoidCallback onToggleMenu;
@@ -67,7 +68,7 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
                 onTap: () {},
                 child: Container(
                   decoration: BoxDecoration(
-                    color: const Color(0xfff5d70a),
+                    color: MyColors.mainYellow,
                     shape: BoxShape.rectangle,
                     borderRadius: BorderRadius.circular(100),
                   ),

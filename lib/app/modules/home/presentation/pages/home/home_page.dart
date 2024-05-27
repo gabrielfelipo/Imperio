@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:imperio/app/modules/home/domain/models/dtos/won_bet.dart';
 import 'package:imperio/app/modules/home/presentation/enums/league_type.card.dart';
 import 'package:imperio/app/modules/home/presentation/pages/home/home_controller.dart';
+import 'package:imperio/app/modules/match/domain/models/dtos/bet_dto.dart';
 import 'package:imperio/core/components/bet_card.view.dart';
 import 'package:imperio/core/components/championship_card.view.dart';
 import 'package:imperio/core/components/custom_bottom_navbar.view.dart';
@@ -29,6 +31,17 @@ class _HomePageState extends State<HomePage> {
     setState(() {
       isMenuOpen = !isMenuOpen;
     });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getData();
+  }
+
+  void getData() async {
+    await controller.getData();
+    setState(() {});
   }
 
   @override
@@ -114,62 +127,18 @@ class _HomePageState extends State<HomePage> {
                     height: 80,
                     child: ListView.builder(
                       scrollDirection: Axis.horizontal,
-                      itemCount: 5,
+                      itemCount: controller.championships.length,
                       itemBuilder: (context, index) {
-                        switch (index) {
-                          case 0:
-                            return Padding(
-                              padding: const EdgeInsets.only(left: 16.0),
-                              child: Championship(
-                                  icon: Image.asset(
-                                'assets/images/championsLeagueIcon.png',
-                                cacheHeight: 45,
-                                cacheWidth: 45,
-                              )),
-                            );
-                          case 1:
-                            return Padding(
-                              padding: const EdgeInsets.only(left: 12),
-                              child: Championship(
-                                  icon: Image.asset(
-                                'assets/images/uefaIcon.png',
-                                cacheHeight: 49,
-                                cacheWidth: 34,
-                              )),
-                            );
-                          case 2:
-                            return Padding(
-                              padding: const EdgeInsets.only(left: 12),
-                              child: Championship(
-                                  icon: Image.asset(
-                                'assets/images/serieAIcon.png',
-                                cacheHeight: 52,
-                                cacheWidth: 44,
-                              )),
-                            );
-                          case 3:
-                            return Padding(
-                              padding: const EdgeInsets.only(left: 12),
-                              child: Championship(
-                                  icon: Image.asset(
-                                'assets/images/laLigaIcon.png',
-                                cacheHeight: 52,
-                                cacheWidth: 52,
-                              )),
-                            );
-                          default:
-                            return Padding(
-                              padding:
-                                  const EdgeInsets.only(right: 16.0, left: 12),
-                              child: Championship(
-                                icon: Image.asset(
-                                  'assets/images/laLigaIcon.png',
-                                  cacheHeight: 52,
-                                  cacheWidth: 52,
-                                ),
-                              ),
-                            );
-                        }
+                        return Padding(
+                          padding: const EdgeInsets.only(left: 16.0),
+                          child: Championship(
+                            icon: Image.network(
+                              controller.championships[index].image,
+                              cacheHeight: 45,
+                              cacheWidth: 45,
+                            ),
+                          ),
+                        );
                       },
                     ),
                   ),
@@ -250,27 +219,83 @@ class _HomePageState extends State<HomePage> {
                       },
                     ),
                   ),
-                  Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 16, vertical: 8),
-                        child: MatchCard(
-                          isComplete: false,
+                  if (controller.matches.length > 0) ...[
+                    Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 16, vertical: 8),
+                          child: MatchCard(
+                            id: controller.matches[0].id,
+                            isComplete: false,
+                            teamA: controller.matches[0].teamA,
+                            teamB: controller.matches[0].teamB,
+                            date: controller.matches[0].date,
+                            teamAScore: controller.matches[0].teamAScore,
+                            teamBScore: controller.matches[0].teamBScore,
+                            xbetOddsAvg: controller.matches[0].xbetOddsAvg,
+                            betsafeOddsAvg:
+                                controller.matches[0].betsafeOddsAvg,
+                            betssonOddsAvg:
+                                controller.matches[0].betssonOddsAvg,
+                            likesCount: controller.matches[0].likesCount,
+                            starsCount: controller.matches[0].starsCount,
+                            viewsCount: controller.matches[0].viewsCount,
+                            sharessCount: controller.matches[0].sharesCount,
+                            channels: controller.matches[0].channels,
+                            stadium: controller.matches[0].stadium,
+                            referee: controller.matches[0].referee,
+                            refereeAvatar: controller.matches[0].refereeAvatar,
+                            refereeStats: controller.matches[0].refereeStats,
+                            teamAImage: controller.matches[0].teamAImage,
+                            teamBImage: controller.matches[0].teamBImage,
+                            redCardMedia: controller.matches[0].redCardMedia,
+                            yellowCardMedia:
+                                controller.matches[0].yellowCardMedia,
+                            teamAStats: controller.matches[0].teamAStats,
+                            teamBStats: controller.matches[0].teamBStats,
+                          ),
                         ),
-                      ),
-                      const SizedBox(
-                        height: 4,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 16, vertical: 8),
-                        child: MatchCard(
-                          isComplete: false,
+                        const SizedBox(
+                          height: 4,
                         ),
-                      ),
-                    ],
-                  ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 16, vertical: 8),
+                          child: MatchCard(
+                            id: controller.matches[1].id,
+                            isComplete: false,
+                            teamA: controller.matches[1].teamA,
+                            teamB: controller.matches[1].teamB,
+                            date: controller.matches[1].date,
+                            teamAScore: controller.matches[1].teamAScore,
+                            teamBScore: controller.matches[1].teamBScore,
+                            xbetOddsAvg: controller.matches[1].xbetOddsAvg,
+                            betsafeOddsAvg:
+                                controller.matches[1].betsafeOddsAvg,
+                            betssonOddsAvg:
+                                controller.matches[1].betssonOddsAvg,
+                            likesCount: controller.matches[1].likesCount,
+                            starsCount: controller.matches[1].starsCount,
+                            viewsCount: controller.matches[1].viewsCount,
+                            sharessCount: controller.matches[1].sharesCount,
+                            channels: controller.matches[1].channels,
+                            stadium: controller.matches[1].stadium,
+                            referee: controller.matches[1].referee,
+                            refereeAvatar: controller.matches[1].refereeAvatar,
+                            refereeStats: controller.matches[1].refereeStats,
+                            teamAImage: controller.matches[1].teamAImage,
+                            teamBImage: controller.matches[1].teamBImage,
+                            redCardMedia: controller.matches[1].redCardMedia,
+                            yellowCardMedia:
+                                controller.matches[1].yellowCardMedia,
+                            teamAStats: controller.matches[1].teamAStats,
+                            teamBStats: controller.matches[1].teamBStats,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
                   const SizedBox(
                     height: 12,
                   ),
@@ -313,68 +338,19 @@ class _HomePageState extends State<HomePage> {
                     height: 316,
                     child: ListView.builder(
                       scrollDirection: Axis.horizontal,
-                      itemCount: 4,
+                      itemCount: controller.tips.length,
                       itemBuilder: (context, index) {
-                        switch (index) {
-                          case 0:
-                            return Padding(
-                              padding:
-                                  const EdgeInsets.only(left: 16.0, bottom: 16),
-                              child: TipCard(
-                                banner: Image.asset(
-                                  'assets/images/tipsBanner1.png',
-                                ),
-                                title:
-                                    'Apostas ao Vivo: Estratégias e Dicas para o Sucesso',
-                                description:
-                                    'Explore as melhores práticas Explore as melhores práticas Explore as melhores práticas',
-                              ),
-                            );
-                          case 1:
-                            return Padding(
-                              padding:
-                                  const EdgeInsets.only(left: 8.0, bottom: 16),
-                              child: TipCard(
-                                banner: Image.asset(
-                                  'assets/images/tipsBanner1.png',
-                                ),
-                                title:
-                                    'Apostas ao Vivo: Estratégias e Dicas para o Sucesso',
-                                description:
-                                    'Explore as melhores práticas Explore as melhores práticas Explore as melhores práticas',
-                              ),
-                            );
-                          case 2:
-                            return Padding(
-                              padding:
-                                  const EdgeInsets.only(left: 8.0, bottom: 16),
-                              child: TipCard(
-                                banner: Image.asset(
-                                  'assets/images/tipsBanner1.png',
-                                ),
-                                title:
-                                    'Apostas ao Vivo: Estratégias e Dicas para o Sucesso',
-                                description:
-                                    'Explore as melhores práticas Explore as melhores práticas Explore as melhores práticas',
-                              ),
-                            );
-                          case 3:
-                            return Padding(
-                              padding: const EdgeInsets.only(
-                                  right: 16, left: 8.0, bottom: 16),
-                              child: TipCard(
-                                banner: Image.asset(
-                                  'assets/images/tipsBanner1.png',
-                                ),
-                                title:
-                                    'Apostas ao Vivo: Estratégias e Dicas para o Sucesso',
-                                description:
-                                    'Explore as melhores práticas Explore as melhores práticas Explore as melhores práticas',
-                              ),
-                            );
-                          default:
-                            return Container();
-                        }
+                        return Padding(
+                          padding:
+                              const EdgeInsets.only(left: 16.0, bottom: 16),
+                          child: TipCard(
+                            banner: Image.network(
+                              controller.tips[index].image,
+                            ),
+                            title: controller.tips[index].title,
+                            description: controller.tips[index].description,
+                          ),
+                        );
                       },
                     ),
                   ),
@@ -391,26 +367,27 @@ class _HomePageState extends State<HomePage> {
                           fontFamily: 'Montserrat'),
                     ),
                   ),
-                  const Column(
+                  Column(
                     children: [
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 16.0),
-                        child: StakeBanner(
-                          description:
-                              'Exclusivo 10% de Retorno e 200% de Bônus de Boas-Vindas até R\$1000 em Crypto',
-                          logoPath: 'assets/images/googleIcon.png',
+                      if (controller.bonus.length > 0) ...[
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 16.0),
+                          child: StakeBanner(
+                            description: controller.bonus[0].discount,
+                            logoPath: controller.bonus[0].platform,
+                          ),
                         ),
-                      ),
-                      SizedBox(
-                        height: 8,
-                      ),
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 16.0),
-                        child: StakeBanner(
-                          description: 'Créditos de Aposta até R\$200 na hora!',
-                          logoPath: 'assets/images/bet365Icon.png',
+                        SizedBox(
+                          height: 8,
                         ),
-                      ),
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 16.0),
+                          child: StakeBanner(
+                            description: controller.bonus[1].discount,
+                            logoPath: controller.bonus[1].platform,
+                          ),
+                        ),
+                      ]
                     ],
                   ),
                   const SizedBox(
@@ -449,7 +426,9 @@ class _HomePageState extends State<HomePage> {
                       ],
                     ),
                   ),
-                  const HorizontalBetCardList(),
+                  HorizontalBetCardList(
+                    wonBets: controller.wonBets,
+                  ),
                   const SizedBox(
                     height: 32,
                   ),
@@ -486,47 +465,60 @@ class _HomePageState extends State<HomePage> {
 }
 
 class HorizontalBetCardList extends StatelessWidget {
-  const HorizontalBetCardList({super.key});
+  const HorizontalBetCardList({super.key, this.wonBets, this.bets});
+
+  final List<WonBetDto>? wonBets;
+  final List<BetDto>? bets;
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 108,
-      child: ListView(
-        scrollDirection: Axis.horizontal,
-        children: const [
-          SizedBox(
-            width: 8,
-          ),
-          BetCard(
-            userName: 'João Felipe Miranda',
-            betDescription: 'Mais de 2.6 Goals',
-            matchDetails: 'BRA X ARG - Há 10 minutos',
-            imageUrl: 'assets/images/mockupUserAvatar.png',
-            betSource: 'bet365',
-            betOdds: '1.44',
-          ),
-          BetCard(
-            userName: 'Maria Silva',
-            betDescription: 'Menos de 3.5 Goals',
-            matchDetails: 'GER X FRA - Há 5 minutos',
-            imageUrl: 'assets/images/mockupUserAvatar.png',
-            betSource: 'bet365',
-            betOdds: '1.50',
-          ),
-          BetCard(
-            userName: 'Carlos Santos',
-            betDescription: 'Ambos Marcam',
-            matchDetails: 'ITA X ESP - Há 2 minutos',
-            imageUrl: 'assets/images/mockupUserAvatar.png',
-            betSource: 'bet365',
-            betOdds: '1.75',
-          ),
-          SizedBox(
-            width: 8,
-          ),
-        ],
-      ),
-    );
+    String lastMinutes(String dateISO) {
+      DateTime data = DateTime.parse(dateISO);
+
+      DateTime now = DateTime.now();
+
+      Duration difference = now.difference(data);
+      int minutes = difference.inMinutes;
+
+      return "$minutes minutos atrás";
+    }
+
+    if (wonBets != null) {
+      return SizedBox(
+        height: 108,
+        child: ListView.builder(
+          scrollDirection: Axis.horizontal,
+          itemCount: wonBets!.length,
+          itemBuilder: (context, index) {
+            return BetCard(
+              userName: wonBets![index].user,
+              betDescription: 'Mais de 2.6 Goals',
+              matchDetails: 'BRA X ARG - Há 10 minutos',
+              imageUrl: wonBets![index].userAvatar,
+              betSource: wonBets![index].platform,
+              betOdds: (wonBets![index].score / 1000).toStringAsFixed(2),
+            );
+          },
+        ),
+      );
+    } else {
+      return SizedBox(
+        height: 108,
+        child: ListView.builder(
+          scrollDirection: Axis.horizontal,
+          itemCount: bets!.length,
+          itemBuilder: (context, index) {
+            return BetCard(
+              userName: bets![index].name,
+              betDescription: bets![index].stat,
+              matchDetails: lastMinutes(bets![index].date),
+              imageUrl: bets![index].avatar,
+              betSource: '1XBet',
+              betOdds: (bets![index].betScore / 1000).toStringAsFixed(2),
+            );
+          },
+        ),
+      );
+    }
   }
 }
