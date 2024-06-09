@@ -69,10 +69,26 @@ Cada Módulo é estruturado da seguinte forma, seguindo os conceitos de Clean Ar
 
 
 ## Prints
-<div style="display: flex; justify-content: space-between;">
-  ![Simulator Screenshot - iPhone 15 - 2024-06-09 at 12 34 53](https://github.com/gabrielfelipo/Imperio/assets/54708833/e6ca2724-19d8-4c0e-b9dd-c84192e1c7b5)
-
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between;">
+  <img src="https://github.com/gabrielfelipo/Imperio/assets/54708833/bf91142d-db64-429a-bf8f-ce3e45f482b0" alt="Screenshot 1" width="20%" style="margin: 5px;">
+  <img src="https://github.com/gabrielfelipo/Imperio/assets/54708833/95d6a003-8ed4-418f-8dae-ef2db6418f53" alt="Screenshot 2" width="20%" style="margin: 5px;">
+  <img src="https://github.com/gabrielfelipo/Imperio/assets/54708833/c0976c27-bb53-4268-a6e1-5d302088325b" alt="Screenshot 3" width="20%" style="margin: 5px;">
+  <img src="https://github.com/gabrielfelipo/Imperio/assets/54708833/1fd71395-a96a-4ed8-9c4e-a532ba7d0fae" alt="Screenshot 4" width="20%" style="margin: 5px;">
+  <img src="https://github.com/gabrielfelipo/Imperio/assets/54708833/be72d8d7-8a71-448d-9b2d-cfc5950c7191" alt="Screenshot 5" width="20%" style="margin: 5px;">
+  <img src="https://github.com/gabrielfelipo/Imperio/assets/54708833/b5922b25-f8ba-4da9-8a1d-c74e23fe4710" alt="Screenshot 6" width="20%" style="margin: 5px;">
+  <img src="https://github.com/gabrielfelipo/Imperio/assets/54708833/8413e9fc-90e7-4342-b88b-b79060a3bc44" alt="Screenshot 7" width="20%" style="margin: 5px;">
+  <img src="https://github.com/gabrielfelipo/Imperio/assets/54708833/0bd4c170-089e-4df7-a16c-3bc7f58fdf6d" alt="Screenshot 8" width="20%" style="margin: 5px;">
+  <img src="https://github.com/gabrielfelipo/Imperio/assets/54708833/d4447cb7-1719-4063-a305-e7075e6b0828" alt="Screenshot 9" width="20%" style="margin: 5px;">
+  <img src="https://github.com/gabrielfelipo/Imperio/assets/54708833/cd3823ae-ec31-439c-8aa0-b9e5d71804dd" alt="Screenshot 10" width="20%" style="margin: 5px;">
+  <img src="https://github.com/gabrielfelipo/Imperio/assets/54708833/ec6b50fc-ab0a-426d-b591-8a5be67c4b2d" alt="Screenshot 11" width="20%" style="margin: 5px;">
+  <img src="https://github.com/gabrielfelipo/Imperio/assets/54708833/39774bcb-6ebd-4581-b4b2-4cbe18ea968e" alt="Screenshot 12" width="20%" style="margin: 5px;">
+  <img src="https://github.com/gabrielfelipo/Imperio/assets/54708833/071e9b9f-6b57-487d-952a-9dafbc6f7a5d" alt="Screenshot 13" width="20%" style="margin: 5px;">
+  <img src="https://github.com/gabrielfelipo/Imperio/assets/54708833/b1095ab3-7da7-4ef7-99cd-1d90c34f823b" alt="Screenshot 14" width="20%" style="margin: 5px;">
 </div>
+
+## Demonstração
+
+[![Assista ao vídeo](https://i9.ytimg.com/vi/M4bhWAy_qL0/mq2.jpg?sqp=CLCsl7MG-oaymwEmCMACELQB8quKqQMa8AEB-AHcBIACgAqKAgwIABABGEggZSgxMA8=&rs=AOn4CLDIAKVQKbUREFD_hjdfEpxYOqVeiQ)](https://youtu.be/M4bhWAy_qL0)
 
 
 ## Contato
