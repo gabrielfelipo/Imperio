@@ -21,7 +21,7 @@ Império é uma plataforma desenvolvida em Flutter para auxiliar apostas esporti
 ## Organização de tasks
 
 Foi utilizado um Kanban para organizar as tasks necessárias para o desenvolvimento do projeto.
-<img width="640" alt="Captura de Tela 2024-06-09 às 11 07 21" src="https://github.com/gabrielfelipo/Imperio/assets/54708833/57c83d03-75f9-4f99-8303-17f9a971120f">
+<img width="340" alt="Captura de Tela 2024-06-09 às 11 07 21" src="https://github.com/gabrielfelipo/Imperio/assets/54708833/57c83d03-75f9-4f99-8303-17f9a971120f">
 
 ## Pré-requisitos
 
