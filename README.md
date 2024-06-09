@@ -81,6 +81,7 @@ lib
 
 ### Módulo
 Cada Módulo é estruturado da seguinte forma, seguindo os conceitos de Clean Archtecture:
+
 modules
 └── home
     ├── data
