@@ -56,6 +56,7 @@ Antes de começar, certifique-se de ter as seguintes ferramentas instaladas:
 ## Estrutura do Projeto
 
 Abaixo está a estrutura principal do projeto:
+
 <img width="429" alt="Captura de Tela 2024-06-09 às 11 59 24" src="https://github.com/gabrielfelipo/Imperio/assets/54708833/3f757eed-f951-45c8-a200-79eca9db3498">
 
 
@@ -63,6 +64,7 @@ Abaixo está a estrutura principal do projeto:
 
 ### Módulo
 Cada Módulo é estruturado da seguinte forma, seguindo os conceitos de Clean Archtecture:
+
 <img width="335" alt="Captura de Tela 2024-06-09 às 12 00 08" src="https://github.com/gabrielfelipo/Imperio/assets/54708833/6bc887b0-31cf-4a94-8c78-1e78b32e0f81">
 
 
