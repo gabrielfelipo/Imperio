@@ -56,27 +56,29 @@ Antes de começar, certifique-se de ter as seguintes ferramentas instaladas:
 ## Estrutura do Projeto
 
 Abaixo está a estrutura principal do projeto:
+
 lib
 ├── app
-│ ├── modules
-│ │ ├── home
-│ │ ├── landing
-│ │ ├── match
-│ │ ├── search
-│ │ ├── shared
-│ │ └── users
-│ ├── app_module.dart
-│ └── app_widget.dart
+│   ├── modules
+│   │   ├── home
+│   │   ├── landing
+│   │   ├── match
+│   │   ├── search
+│   │   ├── shared
+│   │   └── users
+│   ├── app_module.dart
+│   └── app_widget.dart
 ├── core
-│ ├── components
-│ ├── fonts
-│ ├── structures
-│ │ ├── Labels.dart
-│ │ └── my_colors.dart
+│   ├── components
+│   ├── fonts
+│   ├── structures
+│   │   ├── Labels.dart
+│   │   └── my_colors.dart
 ├── main.dart
 ├── assets # Recursos estáticos (imagens, fontes, etc.)
 ├── test # Testes unitários e de widget
 └── pubspec.yaml # Arquivo de configuração do Flutter
+
 
 
 ### Módulo
