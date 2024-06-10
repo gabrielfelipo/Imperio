@@ -88,7 +88,7 @@ Cada Módulo é estruturado da seguinte forma, seguindo os conceitos de Clean Ar
 
 ## Demonstração
 
-[![Assista ao vídeo](https://i9.ytimg.com/vi/M4bhWAy_qL0/mq2.jpg?sqp=CLCsl7MG-oaymwEmCMACELQB8quKqQMa8AEB-AHcBIACgAqKAgwIABABGEggZSgxMA8=&rs=AOn4CLDIAKVQKbUREFD_hjdfEpxYOqVeiQ)](https://youtu.be/M4bhWAy_qL0)
+[![Assista ao vídeo](https://i.ytimg.com/vi/M4bhWAy_qL0/hqdefault.jpg?sqp=-oaymwE9CPYBEIoBSFryq4qpAy8IARUAAAAAGAElAADIQj0AgKJDeAHwAQH4AdwEgAKACooCDAgAEAEYSCBlKDEwDw==&rs=AOn4CLDV1PG_qRHMKKQF5HpW_TrrleeWHw)](https://youtu.be/M4bhWAy_qL0)
 
 
 ## Contato
